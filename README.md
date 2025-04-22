@@ -1,76 +1,44 @@
-# Axiom Software - Your Development Partner for University Projects
+# Axiom Software
 
-## Overview
-Axiom Software is a professional development service provider specializing in university projects, assignments, semester projects, and final year projects (FYPs). We offer comprehensive software development solutions tailored specifically for students, with a special focus on providing quality assistance for academic projects.
+## Tech Stack
+- Next.js - React framework for production
+- React.js - UI component library
+- Tailwind CSS - Utility-first CSS framework
+- Node.js - JavaScript runtime
+- MongoDB - NoSQL database
+- Firebase - Backend services
 
-## 🎓 Special Student Discount
-We're proud to offer a **10% discount** for students from:
-- CUST University
-- BAHRIA University
-- AIR University
+## Project Structure
+```
+/
+├── app/                # Next.js app directory
+│   ├── layout.js       # Root layout
+│   ├── page.js         # Home page
+│   ├── globals.css     # Global styles
+│   └── animations.css  # Animation styles
+├── components/         # React components
+│   ├── Contact.js      # Contact form component
+│   ├── Discount.js     # Discount section
+│   ├── Footer.js       # Footer component
+│   ├── Header.js       # Navigation header
+│   ├── Hero.js         # Hero section
+│   ├── Projects.js     # Projects showcase
+│   ├── Services.js     # Services section
+│   └── ScrollAnimations.js # Scroll animations
+└── public/            # Static assets
+```
 
-## 🚀 Our Services
-
-### Web Development
-- JavaScript Development (Frontend & Backend)
-- React.js Applications
-- Next.js Solutions with Server-Side Rendering
-
-### Backend & API
-- Node.js Server Applications
-- API Integration Services
-- DevOps Solutions
-- Docker Containerization
-
-### Database Solutions
-- MongoDB (NoSQL)
-- Firebase Real-time Database
-- SQL Database Design
-
-### Mobile Development
-- Flutter Cross-platform Apps
-- Native Android Development
-- iOS & Android Solutions
-
-### AI & Machine Learning
-- Custom ML Models
-- Python Development
-- Data Science Solutions
-
-## 💻 Tech Stack
-- Next.js
-- React.js
-- Tailwind CSS
-- Node.js
-- MongoDB
-- Firebase
-
-## 🌟 Features
-- Modern, responsive design
-- Interactive service showcase
-- Easy project consultation
-- Student-focused pricing
-- Professional documentation
-- Comprehensive support
-
-## 📱 Contact Us
-
-### Email
-info@axiomsoftware.com
-
-### WhatsApp
-+92 300 1234567 (Available 9am-6pm, Mon-Fri)
-
-## 🛠 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js (Latest LTS version)
-- npm or yarn
+- Node.js 18.x or later
+- npm or yarn package manager
 
 ### Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/axiom-software.git
+git clone [repository-url]
+cd axiom
 ```
 
 2. Install dependencies
@@ -80,17 +48,51 @@ npm install
 yarn install
 ```
 
-3. Run the development server
+3. Start development server
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+## Development
 
-## 🤝 Contributing
-We welcome contributions! Please feel free to submit a Pull Request.
+### Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build production bundle
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Key Features
+- Server-side rendering with Next.js
+- Responsive design with Tailwind CSS
+- Interactive UI components
+- Smooth scroll animations
+- Contact form with EmailJS integration
+- Mobile-friendly navigation
+
+### Component Architecture
+- **Header**: Navigation component with mobile responsiveness
+- **Hero**: Landing section with main CTA
+- **Services**: Service showcase with tabbed interface
+- **Projects**: Project portfolio display
+- **Contact**: Contact form with validation
+- **ScrollAnimations**: Custom scroll-based animations
+
+## Styling
+- Tailwind CSS for utility-first styling
+- Custom CSS animations
+- Responsive design breakpoints
+- Custom color scheme and typography
+
+## Performance Optimization
+- Image optimization with Next.js
+- Component-level code splitting
+- Optimized font loading
+- Minimized bundle size
+
+## Browser Support
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
