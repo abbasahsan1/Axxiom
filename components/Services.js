@@ -10,71 +10,112 @@ import {
   FaDocker
 } from 'react-icons/fa';
 
+const serviceCategories = {
+  webdev: {
+    icon: <FaCode className="text-accent text-xl" />,
+    title: 'Web Development',
+    description: 'Modern web development solutions using React.js and Next.js frameworks for your academic projects.',
+    services: [
+      {
+        icon: <FaCode className="text-accent text-2xl" />,
+        name: 'React.js Development',
+        description: 'Interactive web applications using React.js with component-based architecture and state management.'
+      },
+      {
+        icon: <FaCode className="text-accent text-2xl" />,
+        name: 'Next.js Development',
+        description: 'Server-side rendered React applications with Next.js for optimal performance and SEO.'
+      },
+      {
+        icon: <FaCode className="text-accent text-2xl" />,
+        name: 'Node.js Development',
+        description: 'Scalable server-side applications using Node.js with Express.js for building robust web APIs and services.'
+      }
+    ]
+  },
+  backend: {
+    icon: <FaServer className="text-accent text-xl" />,
+    title: 'Backend Development',
+    description: 'Robust backend solutions using Node.js and API integration for your server-side requirements.',
+    services: [
+      {
+        icon: <FaServer className="text-accent text-2xl" />,
+        name: 'Node.js Development',
+        description: 'Scalable backend services using Node.js with Express.js framework and RESTful architecture.'
+      },
+      {
+        icon: <FaServer className="text-accent text-2xl" />,
+        name: 'API Integration',
+        description: 'Custom API development and third-party API integration with comprehensive documentation.'
+      }
+    ]
+  },
+  database: {
+    icon: <FaDatabase className="text-accent text-xl" />,
+    title: 'Database Management',
+    description: 'Comprehensive database solutions using SQL, MongoDB, and Firebase for your data management needs.',
+    services: [
+      {
+        icon: <FaDatabase className="text-accent text-2xl" />,
+        name: 'SQL & MongoDB Development',
+        description: 'Database design and implementation using SQL and MongoDB with proper schema optimization.'
+      },
+      {
+        icon: <FaDatabase className="text-accent text-2xl" />,
+        name: 'Firebase Integration',
+        description: 'Real-time database implementation with Firebase, including authentication and cloud functions.'
+      }
+    ]
+  },
+  mobile: {
+    icon: <FaMobile className="text-accent text-xl" />,
+    title: 'Mobile Development',
+    description: 'Cross-platform and native Android mobile application development using Flutter and Android SDK.',
+    services: [
+      {
+        icon: <FaMobile className="text-accent text-2xl" />,
+        name: 'Flutter Development',
+        description: 'Cross-platform mobile applications using Flutter framework with beautiful UI and smooth performance.'
+      },
+      {
+        icon: <FaMobile className="text-accent text-2xl" />,
+        name: 'Android Development',
+        description: 'Native Android applications using Android SDK and Kotlin/Java with material design principles.'
+      }
+    ]
+  },
+  advanced: {
+    icon: <FaRobot className="text-accent text-xl" />,
+    title: 'Advanced Technologies',
+    description: 'Cutting-edge solutions in Python, Machine Learning, and DevOps for complex project requirements.',
+    services: [
+      {
+        icon: <FaRobot className="text-accent text-2xl" />,
+        name: 'Python & Machine Learning',
+        description: 'Python applications with machine learning capabilities using popular ML libraries and frameworks.'
+      },
+      {
+        icon: <FaDocker className="text-accent text-2xl" />,
+        name: 'Docker & DevOps',
+        description: 'Container solutions using Docker with DevOps practices for automated deployment workflows.'
+      }
+    ]
+  }
+};
+
+
 const Services = () => {
   const [activeTab, setActiveTab] = useState('development');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [tabContentVisible, setTabContentVisible] = useState(true);
   
-  // Pre-load all content immediately
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  // Group services into logical categories
-  const serviceCategories = {
-    development: {
-      title: 'Web Development',
-      icon: <FaCode className="text-accent text-2xl" />,
-      description: 'Modern web development solutions using the latest technologies and frameworks.',
-      services: [
-        { name: 'JavaScript', icon: <FaCode className="text-accent text-3xl" />, description: 'Frontend and backend JavaScript development for dynamic web applications.' },
-        { name: 'React', icon: <FaCode className="text-accent text-3xl" />, description: 'Building interactive user interfaces with React.js.' },
-        { name: 'Next.js', icon: <FaCode className="text-accent text-3xl" />, description: 'Server-side rendering and static site generation with Next.js.' },
-      ]
-    },
-    backend: {
-      title: 'Backend & API',
-      icon: <FaServer className="text-accent text-2xl" />,
-      description: 'Robust backend solutions and API integrations for your applications.',
-      services: [
-        { name: 'Node.js', icon: <FaServer className="text-accent text-3xl" />, description: 'Scalable server-side applications with Node.js.' },
-        { name: 'API Integration', icon: <FaServer className="text-accent text-3xl" />, description: 'Seamless integration with third-party APIs and services.' },
-        { name: 'DevOps', icon: <FaServer className="text-accent text-3xl" />, description: 'Continuous integration and deployment pipelines.' },
-        { name: 'Docker', icon: <FaDocker className="text-accent text-3xl" />, description: 'Containerization for consistent development and deployment environments.' },
-      ]
-    },
-    database: {
-      title: 'Database Solutions',
-      icon: <FaDatabase className="text-accent text-2xl" />,
-      description: 'Efficient data storage and management solutions for your applications.',
-      services: [
-        { name: 'MongoDB', icon: <FaDatabase className="text-accent text-3xl" />, description: 'NoSQL database solutions for flexible data models.' },
-        { name: 'Firebase', icon: <FaDatabase className="text-accent text-3xl" />, description: 'Real-time database and backend-as-a-service solutions.' },
-        { name: 'SQL', icon: <FaDatabase className="text-accent text-3xl" />, description: 'Relational database design and optimization.' },
-      ]
-    },
-    mobile: {
-      title: 'Mobile Development',
-      icon: <FaMobile className="text-accent text-2xl" />,
-      description: 'Cross-platform and native mobile application development.',
-      services: [
-        { name: 'Flutter', icon: <FaMobile className="text-accent text-3xl" />, description: 'Cross-platform mobile app development with Flutter.' },
-        { name: 'Mobile App Development', icon: <FaMobile className="text-accent text-3xl" />, description: 'End-to-end mobile application development for iOS and Android.' },
-        { name: 'Android App Development', icon: <FaMobile className="text-accent text-3xl" />, description: 'Native Android application development.' },
-      ]
-    },
-    ai: {
-      title: 'AI & Machine Learning',
-      icon: <FaRobot className="text-accent text-2xl" />,
-      description: 'Intelligent solutions powered by machine learning and AI.',
-      services: [
-        { name: 'Machine Learning', icon: <FaRobot className="text-accent text-3xl" />, description: 'Custom machine learning models and algorithms.' },
-        { name: 'Python', icon: <FaCode className="text-accent text-3xl" />, description: 'Python development for data science and AI applications.' },
-      ]
-    }
-  };
-
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
+    setTabContentVisible(true); // Ensure content is visible when tab changes
   };
 
   // No longer need toggleAccordion function as we're showing all content directly
@@ -108,7 +149,7 @@ const Services = () => {
         {Object.entries(serviceCategories).map(([id, category]) => (
           <div 
             key={id} 
-            className={`${activeTab === id ? 'block' : 'hidden'} stagger-container reveal ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`${activeTab === id ? 'block' : 'hidden'} ${tabContentVisible ? 'opacity-100' : 'opacity-0'}`}
             style={{transition: 'opacity 0.3s ease-in-out'}}
           >
             <div className="mb-6 text-center">
@@ -117,11 +158,11 @@ const Services = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto justify-center">
               {category.services.map((service, index) => (
                 <div 
                   key={index} 
-                  className="border border-gray-200 rounded-lg p-5 bg-white hover:shadow-md transition-all stagger-item"
+                  className="border border-gray-200 rounded-lg p-5 bg-white hover:shadow-md transition-all"
                 >
                   <div className="flex items-start mb-3">
                     <div className="mr-4 mt-1">
