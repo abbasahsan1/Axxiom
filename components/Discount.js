@@ -22,7 +22,7 @@ const Discount = () => {
           
           <p className="text-lg mb-6">
             We're offering an exclusive <span className="font-bold">10% discount</span> for students from 
-            <span className="text-accent font-bold"> CUST, BAHRIA, and AIR universities</span>. 
+            <span className="text-accent font-bold"> CUST, Bahria, and Air universities</span>. 
             Simply mention your university when contacting us or use the promo code when submitting your project request.
           </p>
           
@@ -35,13 +35,13 @@ const Discount = () => {
             
             <div className="bg-background p-6 rounded-lg shadow-sm hover-lift stagger-item">
               <FaUniversity className="text-accent text-3xl mb-3 mx-auto" />
-              <h3 className="font-medium mb-2">BAHRIA</h3>
+              <h3 className="font-medium mb-2">Bahria</h3>
               <p className="text-primary/70 text-sm">Use code: BAHRIA10</p>
             </div>
             
             <div className="bg-background p-6 rounded-lg shadow-sm hover-lift stagger-item">
               <FaUniversity className="text-accent text-3xl mb-3 mx-auto" />
-              <h3 className="font-medium mb-2">AIR</h3>
+              <h3 className="font-medium mb-2">Air</h3>
               <p className="text-primary/70 text-sm">Use code: AIR10</p>
             </div>
           </div>

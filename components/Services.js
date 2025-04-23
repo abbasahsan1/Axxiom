@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   FaCode, 
   FaServer, 
@@ -105,20 +105,16 @@ const serviceCategories = {
 
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState('development');
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [tabContentVisible, setTabContentVisible] = useState(true);
-  
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const [activeTab, setActiveTab] = useState('webdev');
+  const [expandedMobile, setExpandedMobile] = useState('webdev');
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
-    setTabContentVisible(true); // Ensure content is visible when tab changes
   };
 
-  // No longer need toggleAccordion function as we're showing all content directly
+  const handleMobileAccordion = (tabId) => {
+    setExpandedMobile(expandedMobile === tabId ? null : tabId);
+  };
 
   return (
     <div className="container-custom">
@@ -130,8 +126,8 @@ const Services = () => {
         </p>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="flex flex-wrap justify-center mb-8 border-b border-gray-200">
+      {/* Desktop Tab Navigation */}
+      <div className="hidden md:flex flex-wrap justify-center mb-8 border-b border-gray-200">
         {Object.entries(serviceCategories).map(([id, category]) => (
           <button
             key={id}
@@ -144,25 +140,76 @@ const Services = () => {
         ))}
       </div>
 
-      {/* Tab Content - Optimized to load faster and display content directly */}
-      <div className="mb-12">
+      {/* Mobile Accordion */}
+      <div className="md:hidden mb-8">
         {Object.entries(serviceCategories).map(([id, category]) => (
-          <div 
-            key={id} 
-            className={`${activeTab === id ? 'block' : 'hidden'} ${tabContentVisible ? 'opacity-100' : 'opacity-0'}`}
-            style={{transition: 'opacity 0.3s ease-in-out'}}
-          >
+          <div key={id} className="mb-4">
+            <button
+              className={`w-full flex items-center justify-between p-4 rounded-lg transition-all ${expandedMobile === id ? 'bg-accent text-white' : 'bg-background hover:bg-accent/10'}`}
+              onClick={() => handleMobileAccordion(id)}
+            >
+              <div className="flex items-center">
+                <span className="mr-3">{category.icon}</span>
+                <span className="font-medium">{category.title}</span>
+              </div>
+              <svg
+                className={`w-5 h-5 transition-transform ${expandedMobile === id ? 'rotate-180' : ''}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            <div className={`overflow-hidden transition-all duration-300 ${expandedMobile === id ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="p-4 bg-background/50 rounded-b-lg">
+                <p className="text-primary/70 mb-6">{category.description}</p>
+                <div className="space-y-4">
+                  {category.services.map((service, index) => (
+                    <div 
+                      key={index} 
+                      className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="bg-accent/5 p-2 rounded-lg">
+                          {service.icon}
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-lg mb-2">{service.name}</h3>
+                          <p className="text-primary/70">{service.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Services Grid */}
+      <div className="hidden md:block">
+        {Object.entries(serviceCategories)
+          .filter(([id]) => id === activeTab)
+          .map(([id, category]) => (
+          <div key={id} className="animate-fadeIn">
             <div className="mb-6 text-center">
+              <h3 className="text-2xl font-medium mb-2 flex items-center justify-center">
+                <span className="mr-3">{category.icon}</span>
+                {category.title}
+              </h3>
               <p className="text-lg text-primary/70 max-w-3xl mx-auto">
                 {category.description}
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto justify-center">
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {category.services.map((service, index) => (
                 <div 
                   key={index} 
-                  className="border border-gray-200 rounded-lg p-5 bg-white hover:shadow-md transition-all"
+                  className="border border-gray-200 rounded-lg p-5 bg-white hover:shadow-md transition-all hover:-translate-y-1"
                 >
                   <div className="flex items-start mb-3">
                     <div className="mr-4 mt-1">

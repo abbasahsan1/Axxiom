@@ -2,7 +2,7 @@ Website Specifications for Axiom Software
 
 1. Project Overview
 
-Axiom Software is a development service provider offering a wide range of software development services, focusing on university projects, assignments, semester projects, and final year projects (FYPs). The website will serve as a professional platform to showcase services, previous projects, and contact information, with a focus on attracting students from CUST, BAHRIA, and AIR universities by offering a 10% discount.
+Axiom Software is a development service provider offering a wide range of software development services, focusing on university projects, assignments, semester projects, and final year projects (FYPs). The website will serve as a professional platform to showcase services, previous projects, and contact information, with a focus on attracting students from Cust, Bahria, and Air universities by offering a 10% discount.
 
 2. Objectives
 
@@ -10,11 +10,11 @@ Axiom Software is a development service provider offering a wide range of softwa
 
 
 
-Provide a clear and professional representation of Axiom Software’s services.
+Provide a clear and professional representation of Axiom Software's services.
 
 
 
-Highlight the 10% discount for students from CUST, BAHRIA, and AIR universities.
+Highlight the 10% discount for students from Cust, Bahria, and Air universities.
 
 
 
@@ -47,7 +47,7 @@ Bold headline: "Axiom Software - Your Development Partner for University Project
 
 
 
-Subheading: "Special 10% discount for CUST, BAHRIA, and AIR university students!"
+Subheading: "Special 10% discount for Cust, Bahria, and Air university students!"
 
 
 
@@ -63,14 +63,12 @@ Services Overview:
 
 
 
-
-
 List all services (API Integration, JavaScript, Node.js, Firebase, MongoDB, Python, Next.js, Docker, DevOps, Machine Learning, Flutter, Mobile App Development, Android App Development, SQL, React).
 
 
 Discount Section:
 
-Highlight the 10% discount for CUST, BAHRIA, and AIR students.
+Highlight the 10% discount for Cust, Bahria, and Air students.
 Discount if you use a promo code 
 
 
@@ -186,261 +184,6 @@ Message.
 
 
 
-Optional: Project type (dropdown: Assignment, Semester Project, FYP, Other).
-
-
-
-"Send Us an Email" button submits the form or opens a mailto link.
-
-
-
-Display WhatsApp number with a clickable link to initiate a chat.
-
-
-4.5. Additional Features
-
-
-
-
-
-Documentation Option:
-
-
-
-
-
-Mention that documentation is provided upon request for projects.
-
-
-
-Include a checkbox in the contact form for requesting documentation.
-
-
-
-Nominal Cost Statement:
-
-
-
-
-
-Emphasize affordable pricing in the Services and Homepage sections.
-
-
-
-Responsive Design:
-
-
-
-
-
-Ensure the website is fully responsive for mobile, tablet, and desktop devices.
-
-
-
-SEO Optimization:
-
-
-
-
-
-Optimize for keywords like "university project help," "software development services," and "student discount development."
-
-
-
-Include meta tags, alt text for images, and clean URLs.
-
-5. Non-Functional Requirements
-
-
-
-
-
-Performance:
-
-
-
-
-
-Page load time < 3 seconds.
-
-
-
-Optimize images and assets for fast loading.
-
-
-
-Accessibility:
-
-
-
-
-
-Follow WCAG 2.1 guidelines (e.g., alt text for images, keyboard navigation).
-
-
-
-Security:
-
-
-
-
-
-Use HTTPS.
-
-
-
-Sanitize contact form inputs to prevent XSS or injection attacks.
-
-
-
-Cross-Browser Compatibility:
-
-
-
-
-
-Support modern browsers (Chrome, Firefox, Safari, Edge).
-
-6. Technical Specifications
-
-
-
-
-
-Frontend:
-
-
-
-
-
-Framework: Next.js (for SEO and performance).
-
-
-
-Styling: Tailwind CSS for responsive and modern design.
-
-
-
-JavaScript for interactive elements (e.g., project filters, form submission).
-
-
-
-Backend (if needed):
-
-Backend (Minimal)
-API Routes: Next.js API RoutesEmail Service: EmailJS
-Hosting: Vercel
-
-
-
-Email Integration:
-
-
-
-
-
-Use EmailJS 
-
-
-
-WhatsApp Integration:
-
-
-
-
-
-Use WhatsApp API or a direct link (e.g., https://wa.me/<number>).
-
-7. Design Specifications
-
-
-
-
-
-
-Imagery:
-
-
-
-
+Discount text: "Exclusive 10% discount for Cust, Bahria, and Air students."
 
 Use high-quality stock images or custom graphics related to coding, university projects, and technology.
-
-
-
-Include placeholders for project screenshots.
-
-
-
-
-
-Grid layout for services and projects.
-
-
-
-Sticky header with navigation (Home, Services, Projects, Contact).
-
-8. Content Requirements
-
-
-
-
-
-Homepage:
-
-
-
-
-
-Hero text: "Axiom Software - Your Development Partner for University Projects & More."
-
-
-
-Discount text: "Exclusive 10% discount for CUST, BAHRIA, and AIR students."
-
-
-
-Services list with short descriptions.
-
-
-
-Previous projects with brief details.
-
-
-
-Services section:
-
-
-
-
-
-Detailed descriptions for each of the 15 services.
-
-
-
-Projects section:
-
-
-
-
-
-At least 3-5 sample projects with titles, descriptions, and tech stack.
-
-
-
-Contact section:
-
-
-
-
-
-Clear contact details (email, WhatsApp).
-
-
-
-Form with validation (e.g., required fields, valid email format).
-
-
-
-
-Entire website will be one scrollable page 

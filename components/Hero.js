@@ -14,7 +14,7 @@ const Hero = () => {
             </h1>
             
             <h2 className="text-xl md:text-2xl font-medium text-primary/80 animate-slide-up" style={{animationDelay: '0.2s'}}>
-              Special 10% discount for CUST, BAHRIA, and AIR university students!
+              Special 10% discount for CUST, Bahria, and Air university students!
             </h2>
             
             <p className="text-lg text-primary/70 animate-slide-up" style={{animationDelay: '0.4s'}}>
