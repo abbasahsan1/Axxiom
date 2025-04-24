@@ -6,11 +6,22 @@
   --foreground-rgb: 31, 31, 31;
   --background-rgb: 253, 252, 251;
   --accent-rgb: 230, 138, 94;
+  --tertiary-rgb: 245, 242, 239;
+  --secondary-rgb: 209, 209, 209;
+}
+
+.dark {
+  --foreground-rgb: 241, 241, 241;
+  --background-rgb: 18, 18, 18;
+  --accent-rgb: 230, 138, 94;
+  --tertiary-rgb: 30, 30, 30;
+  --secondary-rgb: 46, 46, 46;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer components {
@@ -19,11 +30,11 @@ body {
   }
   
   .btn-primary {
-    @apply bg-primary text-white py-2 px-6 rounded-md hover:opacity-90 transition-all hover:translate-y-[-2px] hover:shadow-md;
+    @apply bg-primary text-white dark:bg-dark-primary dark:text-dark-background py-2 px-6 rounded-md hover:opacity-90 transition-all hover:translate-y-[-2px] hover:shadow-md;
   }
   
   .btn-secondary {
-    @apply bg-tertiary text-primary py-2 px-6 rounded-md hover:opacity-90 transition-all hover:translate-y-[-2px] hover:shadow-md;
+    @apply bg-tertiary text-primary dark:bg-dark-tertiary dark:text-dark-primary py-2 px-6 rounded-md hover:opacity-90 transition-all hover:translate-y-[-2px] hover:shadow-md;
   }
   
   .section-padding {
@@ -31,24 +42,34 @@ body {
   }
   
   .heading-xl {
-    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight dark:text-dark-primary;
   }
   
   .heading-lg {
-    @apply font-serif text-3xl md:text-4xl font-bold leading-tight;
+    @apply font-serif text-3xl md:text-4xl font-bold leading-tight dark:text-dark-primary;
   }
   
   .heading-md {
-    @apply font-serif text-2xl md:text-3xl font-bold leading-tight;
+    @apply font-serif text-2xl md:text-3xl font-bold leading-tight dark:text-dark-primary;
   }
   
   .heading-sm {
-    @apply font-serif text-xl md:text-2xl font-bold leading-tight;
+    @apply font-serif text-xl md:text-2xl font-bold leading-tight dark:text-dark-primary;
   }
 
   .animate-fadeIn {
     animation: fadeIn 0.3s ease-out;
     transform-origin: top;
+  }
+  
+  /* Card styles with dark mode */
+  .card {
+    @apply bg-white dark:bg-dark-secondary rounded-lg shadow-sm transition-all;
+  }
+  
+  /* Text styles with dark mode */
+  .text-content {
+    @apply text-primary/80 dark:text-dark-primary/80;
   }
 }
 

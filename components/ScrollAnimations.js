@@ -4,52 +4,43 @@ import { useEffect } from 'react';
 
 const ScrollAnimations = () => {
   useEffect(() => {
-    // Function to check if an element is in viewport
-    const isInViewport = (element) => {
-      const rect = element.getBoundingClientRect();
-      return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-        rect.bottom >= 0
-      );
-    };
-
-    // Function to handle scroll animations
-    const handleScrollAnimation = () => {
-      // Animate reveal elements
-      const revealElements = document.querySelectorAll('.reveal');
-      revealElements.forEach((element) => {
-        if (isInViewport(element)) {
+    const revealElements = document.querySelectorAll('.reveal');
+    const staggerContainers = document.querySelectorAll('.stagger-container');
+    
+    const reveal = () => {
+      revealElements.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
           element.classList.add('active');
         }
       });
-
-      // Animate staggered items with delay
-      const staggerContainers = document.querySelectorAll('.stagger-container');
-      staggerContainers.forEach((container) => {
-        if (isInViewport(container)) {
-          const items = container.querySelectorAll('.stagger-item');
-          items.forEach((item, index) => {
+      
+      staggerContainers.forEach(container => {
+        const windowHeight = window.innerHeight;
+        const containerTop = container.getBoundingClientRect().top;
+        const containerVisible = 150;
+        
+        if (containerTop < windowHeight - containerVisible) {
+          const staggerItems = container.querySelectorAll('.stagger-item');
+          staggerItems.forEach((item, index) => {
             setTimeout(() => {
               item.classList.add('active');
-            }, 100 * index); // 100ms delay between each item
+            }, 100 * index);
           });
         }
       });
     };
-
-    // Run once on load
-    handleScrollAnimation();
-
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScrollAnimation);
-
-    // Clean up
-    return () => {
-      window.removeEventListener('scroll', handleScrollAnimation);
-    };
+    
+    window.addEventListener('scroll', reveal);
+    reveal(); // Initial check
+    
+    return () => window.removeEventListener('scroll', reveal);
   }, []);
-
-  return null; // This component doesn't render anything
+  
+  return null;
 };
 
 export default ScrollAnimations;

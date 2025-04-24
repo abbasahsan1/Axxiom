@@ -77,39 +77,39 @@ const Contact = () => {
     <div className="container-custom">
       <div className="grid md:grid-cols-2 gap-12">
         <div>
-          <h2 className="heading-lg mb-6">Get In Touch</h2>
-          <p className="text-lg text-primary/70 mb-8">
+          <h2 className="heading-lg mb-6 dark:text-dark-primary">Get In Touch</h2>
+          <p className="text-lg text-primary/70 dark:text-dark-primary/70 mb-8">
             Have a project in mind? Need help with your university assignment or FYP? 
             We're here to help you bring your ideas to life. Contact us today to discuss your project requirements.
           </p>
           
           <div className="space-y-6">
             <div className="flex items-start gap-4">
-              <div className="bg-accent/10 p-3 rounded-full">
+              <div className="bg-accent/10 dark:bg-accent/20 p-3 rounded-full">
                 <FaEnvelope className="text-accent text-xl" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">Email Us</h3>
-                <p className="text-primary/70">info@axiomsoftware.com</p>
-                <p className="text-sm text-primary/60 mt-1">We'll respond within 24 hours</p>
+                <h3 className="font-medium mb-1 dark:text-dark-primary">Email Us</h3>
+                <p className="text-primary/70 dark:text-dark-primary/70">info@axiomsoftware.com</p>
+                <p className="text-sm text-primary/60 dark:text-dark-primary/60 mt-1">We'll respond within 24 hours</p>
               </div>
             </div>
             
             <div className="flex items-start gap-4">
-              <div className="bg-accent/10 p-3 rounded-full">
+              <div className="bg-accent/10 dark:bg-accent/20 p-3 rounded-full">
                 <FaWhatsapp className="text-accent text-xl" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">WhatsApp</h3>
-                <p className="text-primary/70">+92 300 1234567</p>
-                <p className="text-sm text-primary/60 mt-1">Available 9am-6pm (Mon-Fri)</p>
+                <h3 className="font-medium mb-1 dark:text-dark-primary">WhatsApp</h3>
+                <p className="text-primary/70 dark:text-dark-primary/70">+92 300 1234567</p>
+                <p className="text-sm text-primary/60 dark:text-dark-primary/60 mt-1">Available 9am-6pm (Mon-Fri)</p>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="bg-background rounded-lg shadow-sm p-6 md:p-8">
-          <h3 className="heading-sm mb-6">Send Us a Message</h3>
+        <div className="bg-background dark:bg-dark-tertiary rounded-lg shadow-sm p-6 md:p-8">
+          <h3 className="heading-sm mb-6 dark:text-dark-primary">Send Us a Message</h3>
           
           {formStatus.submitted ? (
             <div className="bg-green-50 border border-green-200 rounded-md p-4 flex items-start gap-3">
@@ -124,41 +124,41 @@ const Contact = () => {
           ) : (
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium mb-1 dark:text-dark-primary">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
+                  className="w-full px-4 py-2 border border-secondary dark:border-dark-tertiary dark:bg-dark-background dark:text-dark-primary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
                   placeholder="Your name"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-1 dark:text-dark-primary">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
+                  className="w-full px-4 py-2 border border-secondary dark:border-dark-tertiary dark:bg-dark-background dark:text-dark-primary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
                   placeholder="Your email address"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="projectType" className="block text-sm font-medium mb-1">Project Type</label>
+                <label htmlFor="projectType" className="block text-sm font-medium mb-1 dark:text-dark-primary">Project Type</label>
                 <select
                   id="projectType"
                   name="projectType"
                   value={formData.projectType}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
+                  className="w-full px-4 py-2 border border-secondary dark:border-dark-tertiary dark:bg-dark-background dark:text-dark-primary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
                 >
                   <option value="">Select project type</option>
                   <option value="Assignment">Assignment</option>
@@ -169,14 +169,14 @@ const Contact = () => {
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-1 dark:text-dark-primary">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
-                  className="w-full px-4 py-2 border border-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
+                  className="w-full px-4 py-2 border border-secondary dark:border-dark-tertiary dark:bg-dark-background dark:text-dark-primary rounded-md focus:outline-none focus:ring-2 focus:ring-accent transition-all"
                   placeholder="Tell us about your project requirements"
                   required
                 ></textarea>
@@ -191,7 +191,7 @@ const Contact = () => {
                   onChange={handleChange}
                   className="mt-1 mr-2"
                 />
-                <label htmlFor="requestDocumentation" className="text-sm text-primary/70">
+                <label htmlFor="requestDocumentation" className="text-sm text-primary/70 dark:text-dark-primary/70">
                   I would like to request documentation for my project
                 </label>
               </div>

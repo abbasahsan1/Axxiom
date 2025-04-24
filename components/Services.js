@@ -1,14 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { 
-  FaCode, 
-  FaServer, 
-  FaDatabase, 
-  FaMobile, 
-  FaRobot, 
-  FaDocker
-} from 'react-icons/fa';
+import { useState } from 'react';
+import { FaCode, FaDatabase, FaMobile, FaRobot, FaDocker, FaServer } from 'react-icons/fa';
 
 const serviceCategories = {
   webdev: {
@@ -120,18 +113,22 @@ const Services = () => {
     <div className="container-custom">
       <div className="text-center mb-12">
         <h2 className="heading-lg mb-4">Our Services</h2>
-        <p className="text-lg text-primary/70 max-w-3xl mx-auto">
+        <p className="text-lg text-primary/70 dark:text-dark-primary/70 max-w-3xl mx-auto">
           We offer a comprehensive range of software development services tailored for university projects, 
           assignments, semester projects, and final year projects (FYPs).
         </p>
       </div>
 
       {/* Desktop Tab Navigation */}
-      <div className="hidden md:flex flex-wrap justify-center mb-8 border-b border-gray-200">
+      <div className="hidden md:flex flex-wrap justify-center mb-8 border-b border-gray-200 dark:border-gray-700">
         {Object.entries(serviceCategories).map(([id, category]) => (
           <button
             key={id}
-            className={`flex items-center px-6 py-3 font-medium transition-all ${activeTab === id ? 'text-accent border-b-2 border-accent' : 'text-primary/70 hover:text-accent'}`}
+            className={`flex items-center px-6 py-3 font-medium transition-all ${
+              activeTab === id 
+                ? 'text-accent border-b-2 border-accent' 
+                : 'text-primary/70 dark:text-dark-primary/70 hover:text-accent dark:hover:text-accent'
+            }`}
             onClick={() => handleTabClick(id)}
           >
             <span className="mr-2">{category.icon}</span>
@@ -145,12 +142,16 @@ const Services = () => {
         {Object.entries(serviceCategories).map(([id, category]) => (
           <div key={id} className="mb-4">
             <button
-              className={`w-full flex items-center justify-between p-4 rounded-lg transition-all ${expandedMobile === id ? 'bg-accent text-white' : 'bg-background hover:bg-accent/10'}`}
+              className={`w-full flex items-center justify-between p-4 rounded-lg transition-all ${
+                expandedMobile === id 
+                  ? 'bg-accent text-white' 
+                  : 'bg-background dark:bg-dark-tertiary hover:bg-accent/10 dark:hover:bg-accent/5'
+              }`}
               onClick={() => handleMobileAccordion(id)}
             >
               <div className="flex items-center">
                 <span className="mr-3">{category.icon}</span>
-                <span className="font-medium">{category.title}</span>
+                <span className="font-medium dark:text-dark-primary">{category.title}</span>
               </div>
               <svg
                 className={`w-5 h-5 transition-transform ${expandedMobile === id ? 'rotate-180' : ''}`}
@@ -162,22 +163,24 @@ const Services = () => {
               </svg>
             </button>
             
-            <div className={`overflow-hidden transition-all duration-300 ${expandedMobile === id ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="p-4 bg-background/50 rounded-b-lg">
-                <p className="text-primary/70 mb-6">{category.description}</p>
+            <div className={`overflow-hidden transition-all duration-300 ${
+              expandedMobile === id ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              <div className="p-4 bg-background/50 dark:bg-dark-background rounded-b-lg">
+                <p className="text-primary/70 dark:text-dark-primary/70 mb-6">{category.description}</p>
                 <div className="space-y-4">
                   {category.services.map((service, index) => (
                     <div 
                       key={index} 
-                      className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all"
+                      className="bg-white dark:bg-dark-secondary rounded-lg p-4 shadow-sm hover:shadow-md transition-all"
                     >
                       <div className="flex items-start gap-3">
-                        <div className="bg-accent/5 p-2 rounded-lg">
+                        <div className="bg-accent/5 dark:bg-accent/10 p-2 rounded-lg">
                           {service.icon}
                         </div>
                         <div>
-                          <h3 className="font-medium text-lg mb-2">{service.name}</h3>
-                          <p className="text-primary/70">{service.description}</p>
+                          <h3 className="font-medium text-lg mb-2 dark:text-dark-primary">{service.name}</h3>
+                          <p className="text-primary/70 dark:text-dark-primary/70">{service.description}</p>
                         </div>
                       </div>
                     </div>
@@ -187,6 +190,7 @@ const Services = () => {
             </div>
           </div>
         ))}
+
       </div>
 
       {/* Desktop Services Grid */}
@@ -196,11 +200,11 @@ const Services = () => {
           .map(([id, category]) => (
           <div key={id} className="animate-fadeIn">
             <div className="mb-6 text-center">
-              <h3 className="text-2xl font-medium mb-2 flex items-center justify-center">
+              <h3 className="text-2xl font-medium mb-2 flex items-center justify-center dark:text-dark-primary">
                 <span className="mr-3">{category.icon}</span>
                 {category.title}
               </h3>
-              <p className="text-lg text-primary/70 max-w-3xl mx-auto">
+              <p className="text-lg text-primary/70 dark:text-dark-primary/70 max-w-3xl mx-auto">
                 {category.description}
               </p>
             </div>
@@ -209,20 +213,21 @@ const Services = () => {
               {category.services.map((service, index) => (
                 <div 
                   key={index} 
-                  className="border border-gray-200 rounded-lg p-5 bg-white hover:shadow-md transition-all hover:-translate-y-1"
+                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 bg-white dark:bg-dark-secondary hover:shadow-md transition-all hover:-translate-y-1"
                 >
                   <div className="flex items-start mb-3">
                     <div className="mr-4 mt-1">
                       {service.icon}
                     </div>
-                    <h3 className="font-medium text-lg">{service.name}</h3>
+                    <h3 className="font-medium text-lg dark:text-dark-primary">{service.name}</h3>
                   </div>
-                  <p className="text-primary/80 pl-12">{service.description}</p>
+                  <p className="text-primary/80 dark:text-dark-primary/80 pl-12">{service.description}</p>
                 </div>
               ))}
             </div>
           </div>
         ))}
+
       </div>
 
       <div className="mt-12 text-center">
