@@ -25,6 +25,8 @@
 │   ├── Projects.js     # Projects showcase
 │   ├── Services.js     # Services section
 │   └── ScrollAnimations.js # Scroll animations
+├── context/           # React context
+│   └── ThemeContext.js # Dark mode context
 └── public/            # Static assets
 ```
 
@@ -65,6 +67,7 @@ yarn dev
 
 ### Key Features
 - Server-side rendering with Next.js
+- Dark mode with system preference detection
 - Responsive design with Tailwind CSS
 - Interactive UI components
 - Smooth scroll animations
@@ -72,27 +75,41 @@ yarn dev
 - Mobile-friendly navigation
 
 ### Component Architecture
-- **Header**: Navigation component with mobile responsiveness
+- **Header**: Navigation component with mobile responsiveness and dark mode toggle
 - **Hero**: Landing section with main CTA
 - **Services**: Service showcase with tabbed interface
 - **Projects**: Project portfolio display
 - **Contact**: Contact form with validation
 - **ScrollAnimations**: Custom scroll-based animations
+- **ThemeContext**: Global dark mode state management
 
 ## Styling
 - Tailwind CSS for utility-first styling
+- Dark mode implementation with `dark:` variant classes
 - Custom CSS animations
 - Responsive design breakpoints
 - Custom color scheme and typography
+
+## Dark Mode Implementation
+- Context API for global theme state management
+- CSS variables for dynamic theme switching
+- Persistent theme preference with localStorage
+- System theme preference detection
+- Dark mode toggle in header
+- Full UI consistency between light and dark themes
 
 ## Performance Optimization
 - Image optimization with Next.js
 - Component-level code splitting
 - Optimized font loading
 - Minimized bundle size
+- Theme transition animations
 
 ## Browser Support
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
+
+## Deployment
+The site is optimized for deployment on Vercel, Netlify, or any other hosting service that supports Next.js applications.
