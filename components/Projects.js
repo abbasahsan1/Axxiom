@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FaGithub, FaChevronDown } from 'react-icons/fa';
+import { FaGithub, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Projects = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -133,25 +133,33 @@ const Projects = () => {
                   >
                     {tag}
                   </span>
-                ))}
+                ))} 
               </div>
             </div>
           </div>
-        ))}
+        ))} 
       </div>
 
-      {/* View All Projects button - only show if there are more projects to display */}
-      {!showAllProjects && projectItems.length > initialProjectCount && (
-        <div className="mt-10 text-center">
-          <button 
-            onClick={toggleShowAllProjects}
-            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
-          >
-            View All Projects
-            <FaChevronDown className="transition-transform group-hover:translate-y-1" />
-          </button>
-        </div>
-      )}
+      {/* View All Projects toggle button - always visible */}
+      <div className="mt-10 text-center">
+        <button 
+          onClick={toggleShowAllProjects}
+          className="group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
+          aria-label={showAllProjects ? "Show fewer projects" : "View all projects"}
+        >
+          {showAllProjects ? (
+            <>
+              Show Fewer Projects
+              <FaChevronUp className="transition-transform group-hover:-translate-y-1" />
+            </>
+          ) : (
+            <>
+              View All Projects
+              <FaChevronDown className="transition-transform group-hover:translate-y-1" />
+            </>
+          )}
+        </button>
+      </div>
     </div>
   );
 };
