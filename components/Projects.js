@@ -10,7 +10,7 @@ const Projects = () => {
   
   // Projects data array
   const projectItems = [
-    // Karvaan Project (first project)
+    // Karvaan Project
     {
       title: "Karvaan – Vehicle Management App",
       description: "Karvaan is a comprehensive vehicle management app designed to help vehicle owners track and manage various aspects of their vehicles, including maintenance, fuel consumption, expenses, and more.",
@@ -26,7 +26,7 @@ const Projects = () => {
       tags: ["Next.js", "Tailwind CSS", "Python", "Flask", "Google Gemini", "HuggingFace", "FAISS"],
       letter: "R"
     },
-    // Purrfect Assistant – Smart Cat Care App (new project without GitHub link)
+    // Purrfect Assistant – Smart Cat Care App
     {
       title: "Purrfect Assistant – Smart Cat Care App",
       description: "Purrfect Assistant is an all-in-one AI-powered mobile app crafted to help cat owners provide the best possible care for their feline companions. It offers personalized features such as diet tracking, symptom-based health assistance, training guides, GPS tracking, and much more—all wrapped in an intuitive, cat-parent–friendly UI.",
@@ -34,14 +34,32 @@ const Projects = () => {
       letter: "P",
       hasGithub: false
     },
-    // Remaining placeholder projects
-    ...([4, 5, 6].map(num => ({
-      title: `Project Title ${num}`,
+    // Multiplayer Item-Grabbing 2D Game
+    {
+      title: "Multiplayer Item-Grabbing 2D Game",
+      description: "This is a fast-paced, competitive 2D multiplayer game where two players race to grab the most items on screen. Built using C++, the game utilizes the SFML graphics library and pthread-based multithreading for smooth, concurrent gameplay.",
+      repoUrl: "https://github.com/JahanzebKhan796/Multiplayer-ItemGrabbing-2D-Game?tab=readme-ov-file",
+      tags: ["C++", "SFML", "pthread", "Ubuntu/Linux", "Multithreading"],
+      letter: "M"
+    },
+    
+    // Network Packet Sniffer Tool (replacing a placeholder)
+    {
+      title: "Network Packet Sniffer Tool",
+      description: "A Python-based network packet sniffer tool designed to capture and analyze network traffic from both wired (Ethernet) and wireless (Wi-Fi) interfaces. It provides detailed packet analysis, including filtering capabilities and real-time statistics.",
+      repoUrl: "https://github.com/abbasahsan1/Packetsniffer",
+      tags: ["Python", "Scapy", "Linux", "Networking", "Packet Analysis"],
+      letter: "N"
+    },
+    
+    // Remaining placeholder project
+    {
+      title: "Project Title 6",
       description: "Brief description of the project and the technologies used in its development.",
       repoUrl: "#",
       tags: ["React", "Node.js", "MongoDB"],
       letter: "*"
-    })))
+    }
   ];
 
   // Move window-dependent code to useEffect to prevent hydration mismatch
@@ -84,21 +102,20 @@ const Projects = () => {
         {displayedProjects.map((project, index) => (
           <div 
             key={index}
-            className="bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all hover:shadow-md"
+            className="bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all hover:shadow-md flex flex-col"
           >
-            <div className="aspect-video bg-tertiary dark:bg-dark-tertiary flex items-center justify-center relative">
-              <span className="text-4xl text-accent">{project.letter}</span>
-            </div>
-            <div className="p-5">
-              <div className="flex flex-col mb-3">
+            {/* Remove the aspect-video div entirely and use a colored top border instead */}
+            <div className="h-2 bg-accent w-full"></div>
+            
+            <div className="p-5 flex-grow">
+              <div className="mb-3">
                 <h3 className="font-medium text-lg dark:text-dark-primary mb-2">{project.title}</h3>
-                {/* Show GitHub link only for projects with GitHub repos */}
                 {project.repoUrl && project.repoUrl !== "#" && (
                   <a 
                     href={project.repoUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#24292e] hover:bg-[#1d2125] text-white px-4 py-2 rounded-md text-sm font-medium transition-all transform hover:-translate-y-0.5 hover:shadow-md self-start"
+                    className="inline-flex items-center gap-2 bg-[#24292e] hover:bg-[#1d2125] text-white px-3 py-1.5 rounded-md text-sm font-medium transition-all transform hover:-translate-y-0.5 hover:shadow-md self-start"
                   >
                     <FaGithub className="text-lg" />
                     View on GitHub
@@ -108,7 +125,7 @@ const Projects = () => {
               <p className="text-primary/70 dark:text-dark-primary/70 mb-3">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-auto pt-2">
                 {project.tags.map((tag, tagIndex) => (
                   <span 
                     key={tagIndex} 
@@ -120,7 +137,7 @@ const Projects = () => {
               </div>
             </div>
           </div>
-        ))} 
+        ))}
       </div>
 
       {/* View All Projects button - only show if there are more projects to display */}
