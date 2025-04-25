@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaEnvelope, FaWhatsapp, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,27 +20,6 @@ const Footer = () => {
               Your trusted development partner for university projects, assignments, 
               semester projects, and final year projects (FYPs).
             </p>
-            
-            <div className="flex space-x-4">
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-accent transition-colors hover-lift"
-                aria-label="GitHub"
-              >
-                <FaGithub size={20} />
-              </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-accent transition-colors hover-lift"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin size={20} />
-              </a>
-            </div>
           </div>
           
           <div>
@@ -93,16 +72,15 @@ const Footer = () => {
                   axixomsoftware+info@gmail.com
                 </a>
               </li>
-              
               <li className="flex items-center gap-3">
                 <FaWhatsapp className="text-accent" />
                 <a 
-                  href="https://wa.me/923001234567" 
+                  href="https://wa.me/923350014063" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  +92 300 1234567
+                  +92 335 0014063
                 </a>
               </li>
             </ul>

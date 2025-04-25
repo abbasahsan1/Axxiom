@@ -99,7 +99,7 @@ const serviceCategories = {
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('webdev');
-  const [expandedMobile, setExpandedMobile] = useState('webdev');
+  const [expandedMobile, setExpandedMobile] = useState(null); // Changed from 'webdev' to null
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
