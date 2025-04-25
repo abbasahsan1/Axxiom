@@ -1,10 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Projects = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const projectsRef = useRef(null);
   // Start with a safe default for server rendering (showing 3 projects)
   const [initialProjectCount, setInitialProjectCount] = useState(3);
   
@@ -81,7 +83,57 @@ const Projects = () => {
   }, []);
 
   const toggleShowAllProjects = () => {
-    setShowAllProjects(!showAllProjects);
+    // Don't allow toggling during animation
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    
+    // Toggle with animation
+    const container = projectsRef.current;
+    
+    if (showAllProjects) {
+      // Animation for collapsing
+      const projectItems = container.querySelectorAll('.project-item');
+      
+      // Hide the items that will be removed with staggered delay
+      projectItems.forEach((item, index) => {
+        if (index >= initialProjectCount) {
+          const delay = (projectItems.length - index) * 60; // Stagger from end
+          setTimeout(() => {
+            item.classList.add('opacity-0', 'translate-y-4');
+          }, delay);
+        }
+      });
+      
+      // After items are faded out, change state to trigger re-render
+      setTimeout(() => {
+        setShowAllProjects(false);
+        setIsAnimating(false);
+      }, (projectItems.length - initialProjectCount) * 60 + 300);
+    } else {
+      // Animation for expanding
+      setShowAllProjects(true);
+      
+      // After re-render with all items, animate them in
+      setTimeout(() => {
+        const newItems = container.querySelectorAll('.project-item');
+        newItems.forEach((item, index) => {
+          if (index >= initialProjectCount) {
+            item.classList.add('opacity-0', 'translate-y-4');
+            
+            // Stagger the appearance
+            const delay = (index - initialProjectCount + 1) * 60;
+            setTimeout(() => {
+              item.classList.remove('opacity-0', 'translate-y-4');
+            }, delay);
+          }
+        });
+        
+        setTimeout(() => {
+          setIsAnimating(false);
+        }, (projectItems.length - initialProjectCount) * 60 + 300);
+      }, 50);
+    }
   };
 
   // Projects to display based on current state
@@ -97,12 +149,15 @@ const Projects = () => {
         </p>
       </div>
       
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div 
+        ref={projectsRef}
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative"
+      >
         {/* Display projects based on current state */}
         {displayedProjects.map((project, index) => (
           <div 
             key={index}
-            className="bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all hover:shadow-md flex flex-col"
+            className={`project-item bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all duration-300 hover:shadow-md flex flex-col ${index >= initialProjectCount ? "transition-opacity duration-300 ease-in-out" : ""}`}
           >
             {/* Remove the aspect-video div entirely and use a colored top border instead */}
             <div className="h-2 bg-accent w-full"></div>
@@ -144,7 +199,8 @@ const Projects = () => {
       <div className="mt-10 text-center">
         <button 
           onClick={toggleShowAllProjects}
-          className="group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
+          disabled={isAnimating}
+          className={`group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md ${isAnimating ? 'opacity-80 cursor-not-allowed' : ''}`}
           aria-label={showAllProjects ? "Show fewer projects" : "View all projects"}
         >
           {showAllProjects ? (
