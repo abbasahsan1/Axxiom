@@ -87,12 +87,13 @@ const Footer = () => {
               <li className="flex items-center gap-3">
                 <FaEnvelope className="text-accent" />
                 <a 
-                  href="mailto:info@axiomsoftware.com" 
+                  href="mailto:axixomsoftware+info@gmail.com" 
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  info@axiomsoftware.com
+                  axixomsoftware+info@gmail.com
                 </a>
               </li>
+              
               <li className="flex items-center gap-3">
                 <FaWhatsapp className="text-accent" />
                 <a 

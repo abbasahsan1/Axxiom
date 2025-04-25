@@ -1,6 +1,6 @@
 'use client';
 
-import { FaEnvelope } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 
 const Hero = () => {
   return (
@@ -19,19 +19,14 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{animationDelay: '0.6s'}}>
-            <a 
-              href="#contact" 
-              className="btn-primary flex items-center justify-center gap-2"
-            >
-              <FaEnvelope />
-              Send Us an Email
-            </a>
-            
+            {/* Enhanced Services button */}
             <a 
               href="#services" 
-              className="btn-secondary flex items-center justify-center"
+              className="group bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-1"
             >
-              Our Services
+              <span>Our Services</span>
+              <FaArrowRight className="transform group-hover:translate-x-1 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
             </a>
           </div>
         </div>

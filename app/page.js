@@ -9,6 +9,7 @@ import Discount from '../components/Discount';
 import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import FloatingContactButton from '../components/FloatingContactButton';
 import { ThemeContext } from '../context/ThemeContext';
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
     <main className="min-h-screen">
       <ScrollAnimations />
       <Header activeSection={activeSection} />
+      <FloatingContactButton />
       
       <section id="home" className="dark:bg-dark-background">
         <Hero />

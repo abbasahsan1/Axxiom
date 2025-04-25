@@ -200,10 +200,7 @@ const Services = () => {
           .map(([id, category]) => (
           <div key={id} className="animate-fadeIn">
             <div className="mb-6 text-center">
-              <h3 className="text-2xl font-medium mb-2 flex items-center justify-center dark:text-dark-primary">
-                <span className="mr-3">{category.icon}</span>
-                {category.title}
-              </h3>
+              {/* Remove the duplicated heading, keep only the description */}
               <p className="text-lg text-primary/70 dark:text-dark-primary/70 max-w-3xl mx-auto">
                 {category.description}
               </p>
@@ -227,17 +224,9 @@ const Services = () => {
             </div>
           </div>
         ))}
-
       </div>
 
-      <div className="mt-12 text-center">
-        <a 
-          href="#contact" 
-          className="btn-primary inline-flex items-center justify-center"
-        >
-          Contact Us for Your Project
-        </a>
-      </div>
+      {/* Remove redundant CTA button - replaced by floating button */}
     </div>
   );
 };

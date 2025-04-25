@@ -16,6 +16,17 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Didot:wght@400;700&display=swap" />
+        
+        {/* Formspree success redirect handling */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (window.location.search.includes('?submitted=true')) {
+            window.history.replaceState(null, null, window.location.pathname + '#contact');
+            window.onload = function() {
+              document.getElementById('form-success').style.display = 'flex';
+              document.getElementById('contact-form').style.display = 'none';
+            }
+          }
+        `}} />
       </head>
       <body className={`${inter.variable} font-sans transition-colors duration-300`}>
         <ThemeProvider>
