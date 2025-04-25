@@ -151,7 +151,7 @@ const Projects = () => {
       
       <div 
         ref={projectsRef}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative"
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative"
       >
         {/* Display projects based on current state */}
         {displayedProjects.map((project, index) => (
