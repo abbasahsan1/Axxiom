@@ -1,8 +1,23 @@
 'use client';
 
 import { FaArrowRight } from 'react-icons/fa';
+import { useCallback } from 'react';
 
 const Hero = () => {
+  // Add a scroll handler function
+  const handleSmoothScroll = useCallback((e) => {
+    e.preventDefault();
+    const targetId = e.currentTarget.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80, // Adjust for header height
+        behavior: 'smooth'
+      });
+    }
+  }, []);
+
   return (
     <div className="container-custom">
       <div className="flex flex-col md:flex-row items-center justify-between gap-12 py-32">
@@ -22,6 +37,7 @@ const Hero = () => {
             {/* Enhanced Services button */}
             <a 
               href="#services" 
+              onClick={handleSmoothScroll}
               className="group bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden shadow-md hover:shadow-lg transform hover:-translate-y-1"
             >
               <span>Our Services</span>

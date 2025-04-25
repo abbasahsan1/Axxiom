@@ -129,3 +129,33 @@
 .scale-transition {
   transition: transform 0.3s ease;
 }
+
+/* Ripple animation for buttons */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* Target the specific orange button for custom press behavior */
+.group:active .ripple-effect {
+  animation: ripple 0.6s linear;
+}

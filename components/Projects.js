@@ -1,12 +1,10 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { FaGithub, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Projects = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const projectsRef = useRef(null);
   // Start with a safe default for server rendering (showing 3 projects)
   const [initialProjectCount, setInitialProjectCount] = useState(3);
   
@@ -54,13 +52,14 @@ const Projects = () => {
       letter: "N"
     },
     
-    // Remaining placeholder project
+    // TravelPlannerApp
     {
-      title: "Project Title 6",
-      description: "Brief description of the project and the technologies used in its development.",
-      repoUrl: "#",
-      tags: ["React", "Node.js", "MongoDB"],
-      letter: "*"
+      title: "TravelPlannerApp",
+      description: "TravelPlannerApp is an intuitive mobile application designed for travelers to plan their trips with ease. The app allows users to search and book hotels, explore various cities, and create personalized trip itineraries. It also provides recommendations for popular tourist destinations and activities, ensuring each trip is perfectly tailored to the user's interests. The app integrates Google Maps for navigation and uses Gemini AI to offer real-time, personalized suggestions for activities.",
+      techStack: ["Kotlin", "Firebase Authentication", "Gemini API", "Maps API"],
+      repoUrl: "https://github.com/Abdullahxfarooqui/travelplannerapp",
+      liveUrl: "#",  // If there's no live URL, keep as "#" or remove if not required
+      image: "/images/projects/travel-planner.jpg" // Update with actual image path if available
     }
   ];
 
@@ -83,57 +82,7 @@ const Projects = () => {
   }, []);
 
   const toggleShowAllProjects = () => {
-    // Don't allow toggling during animation
-    if (isAnimating) return;
-    
-    setIsAnimating(true);
-    
-    // Toggle with animation
-    const container = projectsRef.current;
-    
-    if (showAllProjects) {
-      // Animation for collapsing
-      const projectItems = container.querySelectorAll('.project-item');
-      
-      // Hide the items that will be removed with staggered delay
-      projectItems.forEach((item, index) => {
-        if (index >= initialProjectCount) {
-          const delay = (projectItems.length - index) * 60; // Stagger from end
-          setTimeout(() => {
-            item.classList.add('opacity-0', 'translate-y-4');
-          }, delay);
-        }
-      });
-      
-      // After items are faded out, change state to trigger re-render
-      setTimeout(() => {
-        setShowAllProjects(false);
-        setIsAnimating(false);
-      }, (projectItems.length - initialProjectCount) * 60 + 300);
-    } else {
-      // Animation for expanding
-      setShowAllProjects(true);
-      
-      // After re-render with all items, animate them in
-      setTimeout(() => {
-        const newItems = container.querySelectorAll('.project-item');
-        newItems.forEach((item, index) => {
-          if (index >= initialProjectCount) {
-            item.classList.add('opacity-0', 'translate-y-4');
-            
-            // Stagger the appearance
-            const delay = (index - initialProjectCount + 1) * 60;
-            setTimeout(() => {
-              item.classList.remove('opacity-0', 'translate-y-4');
-            }, delay);
-          }
-        });
-        
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, (projectItems.length - initialProjectCount) * 60 + 300);
-      }, 50);
-    }
+    setShowAllProjects(!showAllProjects);
   };
 
   // Projects to display based on current state
@@ -149,15 +98,12 @@ const Projects = () => {
         </p>
       </div>
       
-      <div 
-        ref={projectsRef}
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative"
-      >
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Display projects based on current state */}
         {displayedProjects.map((project, index) => (
           <div 
             key={index}
-            className={`project-item bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all duration-300 hover:shadow-md flex flex-col ${index >= initialProjectCount ? "transition-opacity duration-300 ease-in-out" : ""}`}
+            className="bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all hover:shadow-md flex flex-col"
           >
             {/* Remove the aspect-video div entirely and use a colored top border instead */}
             <div className="h-2 bg-accent w-full"></div>
@@ -181,14 +127,24 @@ const Projects = () => {
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mt-auto pt-2">
-                {project.tags.map((tag, tagIndex) => (
+                {project.tags && project.tags.map((tag, tagIndex) => (
                   <span 
                     key={tagIndex} 
                     className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80"
                   >
                     {tag}
                   </span>
-                ))} 
+                ))}
+                
+                {/* If tags don't exist, show tech stack instead */}
+                {(!project.tags && project.techStack) && project.techStack.map((tech, techIndex) => (
+                  <span 
+                    key={techIndex} 
+                    className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -199,8 +155,7 @@ const Projects = () => {
       <div className="mt-10 text-center">
         <button 
           onClick={toggleShowAllProjects}
-          disabled={isAnimating}
-          className={`group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md ${isAnimating ? 'opacity-80 cursor-not-allowed' : ''}`}
+          className="group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
           aria-label={showAllProjects ? "Show fewer projects" : "View all projects"}
         >
           {showAllProjects ? (

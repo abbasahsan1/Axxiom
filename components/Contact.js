@@ -104,11 +104,7 @@ const Contact = () => {
                   rel="noopener noreferrer" 
                   className="text-primary/80 dark:text-dark-primary/80 hover:text-accent transition-colors text-lg"
                 >
-                  +92 335 0014063
                 </a>
-                <p className="text-sm text-primary/60 dark:text-dark-primary/60 mt-2 mb-4">
-                  Available 9am-6pm (Monday-Friday)
-                </p>
                 
                 {/* WhatsApp Button - Centered on mobile, regular alignment on desktop */}
                 <div className="flex justify-center md:block">
