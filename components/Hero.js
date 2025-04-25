@@ -36,14 +36,148 @@ const Hero = () => {
             <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-full opacity-20"></div>
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent rounded-full opacity-10"></div>
             <div className="bg-tertiary dark:bg-dark-tertiary p-8 rounded-lg shadow-lg">
-              <div className="aspect-video bg-primary/5 dark:bg-dark-primary/5 rounded flex items-center justify-center">
-                <span className="text-6xl text-accent">*</span>
-              </div>
-              
-              <div className="mt-4 space-y-2">
-                <div className="h-4 bg-primary/10 dark:bg-dark-primary/10 rounded w-3/4"></div>
-                <div className="h-4 bg-primary/10 dark:bg-dark-primary/10 rounded w-1/2"></div>
-                <div className="h-4 bg-primary/10 dark:bg-dark-primary/10 rounded w-5/6"></div>
+              {/* Code Editor Graphic - Now more rectangular */}
+              <div className="bg-[#1E1E1E] dark:bg-[#121212] rounded-lg overflow-hidden border border-gray-700 w-full">
+                {/* Editor Top Bar */}
+                <div className="bg-[#252526] dark:bg-[#1E1E1E] p-2 flex items-center">
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div className="text-xs text-gray-400 mx-auto">university-project.js</div>
+                </div>
+                
+                {/* Code Content - Added more lines to make it more rectangular */}
+                <div className="p-4 font-mono text-sm">
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">1</span>
+                    <span className="text-blue-400">import</span>
+                    <span className="text-white mx-1">React</span>
+                    <span className="text-blue-400">from</span>
+                    <span className="text-green-400 ml-1">'react'</span>
+                    <span className="text-white">;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">2</span>
+                    <span className="text-blue-400">import</span>
+                    <span className="text-white mx-1">&#123;</span>
+                    <span className="text-white">useState</span>
+                    <span className="text-white">&#125;</span>
+                    <span className="text-blue-400">from</span>
+                    <span className="text-green-400 ml-1">'react'</span>
+                    <span className="text-white">;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">3</span>
+                    <span className="text-white"></span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">4</span>
+                    <span className="text-gray-400">// Student Project Component</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">5</span>
+                    <span className="text-blue-400">const</span>
+                    <span className="text-yellow-300 ml-1">StudentProject</span>
+                    <span className="text-white ml-1">=</span>
+                    <span className="text-purple-400 ml-1">() ={">"}</span>
+                    <span className="text-white ml-1">&#123;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">6</span>
+                    <span className="text-white ml-4"></span>
+                    <span className="text-blue-400">const</span>
+                    <span className="text-white ml-1">[</span>
+                    <span className="text-orange-300">isComplete</span>
+                    <span className="text-white">,</span>
+                    <span className="text-orange-300 ml-1">setIsComplete</span>
+                    <span className="text-white">]</span>
+                    <span className="text-white ml-1">=</span>
+                    <span className="text-yellow-300 ml-1">useState</span>
+                    <span className="text-white">(</span>
+                    <span className="text-blue-400">false</span>
+                    <span className="text-white">);</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">7</span>
+                    <span className="text-white ml-4"></span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">8</span>
+                    <span className="text-white ml-4">return (</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">9</span>
+                    <span className="text-white ml-8">&lt;</span>
+                    <span className="text-orange-400">div</span>
+                    <span className="text-white">&gt;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">10</span>
+                    <span className="text-white ml-12">&lt;</span>
+                    <span className="text-orange-400">h1</span>
+                    <span className="text-white">&gt;</span>
+                    <span className="text-gray-300">Axiom Solutions</span>
+                    <span className="text-white">&lt;/</span>
+                    <span className="text-orange-400">h1</span>
+                    <span className="text-white">&gt;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">11</span>
+                    <span className="text-white ml-12">&lt;</span>
+                    <span className="text-orange-400">p</span>
+                    <span className="text-white">&gt;</span>
+                    <span className="text-gray-300">University Project Status:</span>
+                    <span className="text-white">&lt;/</span>
+                    <span className="text-orange-400">p</span>
+                    <span className="text-white">&gt;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">12</span>
+                    <span className="text-white ml-12">&lt;</span>
+                    <span className="text-orange-400">button</span>
+                    <span className="text-white">&gt;</span>
+                    <span className="text-gray-300">Complete Project</span>
+                    <span className="text-white">&lt;/</span>
+                    <span className="text-orange-400">button</span>
+                    <span className="text-white">&gt;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">13</span>
+                    <span className="text-white ml-8">&lt;/</span>
+                    <span className="text-orange-400">div</span>
+                    <span className="text-white">&gt;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">14</span>
+                    <span className="text-white ml-4">);</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">15</span>
+                    <span className="text-white">&#125;;</span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">16</span>
+                    <span className="text-white"></span>
+                  </div>
+                  <div className="flex">
+                    <span className="text-gray-500 mr-4">17</span>
+                    <span className="text-blue-400">export</span>
+                    <span className="text-blue-400 ml-1">default</span>
+                    <span className="text-yellow-300 ml-1">StudentProject</span>
+                    <span className="text-white">;</span>
+                  </div>
+                </div>
+                
+                {/* Status Bar */}
+                <div className="bg-[#007ACC] dark:bg-[#007ACC] text-white text-xs p-1 flex justify-between items-center">
+                  <div>Ready</div>
+                  <div className="flex items-center">
+                    <span className="mr-3">JavaScript</span>
+                    <span>UTF-8</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

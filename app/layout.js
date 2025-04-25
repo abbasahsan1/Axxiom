@@ -2,6 +2,7 @@ import './globals.css';
 import './animations.css';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '../context/ThemeContext';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -16,22 +17,22 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Didot:wght@400;700&display=swap" />
-        
-        {/* Formspree success redirect handling */}
-        <script dangerouslySetInnerHTML={{ __html: `
-          if (window.location.search.includes('?submitted=true')) {
-            window.history.replaceState(null, null, window.location.pathname + '#contact');
-            window.onload = function() {
-              document.getElementById('form-success').style.display = 'flex';
-              document.getElementById('contact-form').style.display = 'none';
-            }
-          }
-        `}} />
       </head>
       <body className={`${inter.variable} font-sans transition-colors duration-300`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>
+        
+        {/* Move client-side script to Next.js Script component with strategy="afterInteractive" */}
+        <Script id="form-success-handler" strategy="afterInteractive">
+          {`
+            if (window.location.search.includes('?submitted=true')) {
+              window.history.replaceState(null, null, window.location.pathname + '#contact');
+              document.getElementById('form-success').style.display = 'flex';
+              document.getElementById('contact-form').style.display = 'none';
+            }
+          `}
+        </Script>
       </body>
     </html>
   );

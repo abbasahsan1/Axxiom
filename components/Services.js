@@ -99,10 +99,21 @@ const serviceCategories = {
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('webdev');
-  const [expandedMobile, setExpandedMobile] = useState(null); // Changed from 'webdev' to null
+  const [expandedMobile, setExpandedMobile] = useState(null);
+  const [previousTab, setPreviousTab] = useState('webdev');
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleTabClick = (tabId) => {
-    setActiveTab(tabId);
+    if (tabId !== activeTab) {
+      setPreviousTab(activeTab);
+      setIsAnimating(true);
+      setActiveTab(tabId);
+      
+      // Reset animation state after animation completes
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 400); // Match this with the CSS transition duration
+    }
   };
 
   const handleMobileAccordion = (tabId) => {
@@ -126,12 +137,14 @@ const Services = () => {
             key={id}
             className={`flex items-center px-6 py-3 font-medium transition-all ${
               activeTab === id 
-                ? 'text-accent border-b-2 border-accent' 
+                ? 'text-accent border-b-2 border-accent scale-105 origin-bottom' 
                 : 'text-primary/70 dark:text-dark-primary/70 hover:text-accent dark:hover:text-accent'
             }`}
             onClick={() => handleTabClick(id)}
           >
-            <span className="mr-2">{category.icon}</span>
+            <span className={`mr-2 transition-transform duration-300 ${activeTab === id ? 'scale-110' : ''}`}>
+              {category.icon}
+            </span>
             <span>{category.title}</span>
           </button>
         ))}
@@ -193,14 +206,22 @@ const Services = () => {
 
       </div>
 
-      {/* Desktop Services Grid */}
-      <div className="hidden md:block">
+      {/* Desktop Services Grid with animations */}
+      <div className="hidden md:block relative min-h-[400px]">
         {Object.entries(serviceCategories)
-          .filter(([id]) => id === activeTab)
+          .filter(([id]) => id === activeTab || id === previousTab)
           .map(([id, category]) => (
-          <div key={id} className="animate-fadeIn">
+          <div 
+            key={id} 
+            className={`absolute w-full transition-all duration-300 ${
+              id === activeTab 
+                ? 'opacity-100 translate-x-0 z-10' 
+                : isAnimating 
+                  ? 'opacity-0 -translate-x-8 z-0' 
+                  : 'opacity-0 hidden'
+            }`}
+          >
             <div className="mb-6 text-center">
-              {/* Remove the duplicated heading, keep only the description */}
               <p className="text-lg text-primary/70 dark:text-dark-primary/70 max-w-3xl mx-auto">
                 {category.description}
               </p>
@@ -209,8 +230,14 @@ const Services = () => {
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {category.services.map((service, index) => (
                 <div 
-                  key={index} 
-                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-5 bg-white dark:bg-dark-secondary hover:shadow-md transition-all hover:-translate-y-1"
+                  key={index}
+                  style={{ 
+                    animationDelay: `${index * 0.1}s`,
+                    transitionDelay: `${index * 0.05}s`
+                  }} 
+                  className={`border border-gray-200 dark:border-gray-700 rounded-lg p-5 bg-white dark:bg-dark-secondary hover:shadow-md transition-all hover:-translate-y-1 ${
+                    id === activeTab ? 'animate-fade-slide-in' : ''
+                  }`}
                 >
                   <div className="flex items-start mb-3">
                     <div className="mr-4 mt-1">

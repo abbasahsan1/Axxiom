@@ -1,9 +1,74 @@
 'use client';
 
-import { FaGithub } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaGithub, FaChevronDown } from 'react-icons/fa';
 
-// Assuming there's a Projects component, add dark mode classes
 const Projects = () => {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  // Start with a safe default for server rendering (showing 3 projects)
+  const [initialProjectCount, setInitialProjectCount] = useState(3);
+  
+  // Projects data array
+  const projectItems = [
+    // Karvaan Project (first project)
+    {
+      title: "Karvaan – Vehicle Management App",
+      description: "Karvaan is a comprehensive vehicle management app designed to help vehicle owners track and manage various aspects of their vehicles, including maintenance, fuel consumption, expenses, and more.",
+      repoUrl: "https://github.com/abbasahsan1/Karvaan/",
+      tags: ["Flutter", "Dart", "Python", "TensorFlow", "MongoDB", "Maps API"],
+      letter: "K"
+    },
+    // RAG-based Question Answering Chatbot
+    {
+      title: "RAG-based Question Answering Chatbot",
+      description: "A Retrieval-Augmented Generation (RAG) chatbot that lets users upload a PDF, ask questions based on its contents, and get intelligent responses powered by Google's Gemini API. The project features a Python-Flask backend and a Next.js frontend with real-time chat and session management.",
+      repoUrl: "https://github.com/JahanzebKhan796/RAG_QA_Chatbot",
+      tags: ["Next.js", "Tailwind CSS", "Python", "Flask", "Google Gemini", "HuggingFace", "FAISS"],
+      letter: "R"
+    },
+    // Purrfect Assistant – Smart Cat Care App (new project without GitHub link)
+    {
+      title: "Purrfect Assistant – Smart Cat Care App",
+      description: "Purrfect Assistant is an all-in-one AI-powered mobile app crafted to help cat owners provide the best possible care for their feline companions. It offers personalized features such as diet tracking, symptom-based health assistance, training guides, GPS tracking, and much more—all wrapped in an intuitive, cat-parent–friendly UI.",
+      tags: ["Flutter", "Python", "Node.js", "Gemini API", "Firebase", "AWS", "Traccar"],
+      letter: "P",
+      hasGithub: false
+    },
+    // Remaining placeholder projects
+    ...([4, 5, 6].map(num => ({
+      title: `Project Title ${num}`,
+      description: "Brief description of the project and the technologies used in its development.",
+      repoUrl: "#",
+      tags: ["React", "Node.js", "MongoDB"],
+      letter: "*"
+    })))
+  ];
+
+  // Move window-dependent code to useEffect to prevent hydration mismatch
+  useEffect(() => {
+    // Update project count based on screen size after client-side hydration
+    const updateProjectCount = () => {
+      setInitialProjectCount(window.innerWidth < 768 ? 2 : 3);
+    };
+    
+    // Initial check
+    updateProjectCount();
+    
+    // Add resize listener
+    window.addEventListener('resize', updateProjectCount);
+    
+    return () => {
+      window.removeEventListener('resize', updateProjectCount);
+    };
+  }, []);
+
+  const toggleShowAllProjects = () => {
+    setShowAllProjects(!showAllProjects);
+  };
+
+  // Projects to display based on current state
+  const displayedProjects = showAllProjects ? projectItems : projectItems.slice(0, initialProjectCount);
+
   return (
     <div className="container-custom">
       <div className="text-center mb-12">
@@ -15,80 +80,61 @@ const Projects = () => {
       </div>
       
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Karvaan Project - Updated with accurate information */}
-        <div className="bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all hover:shadow-md">
-          <div className="aspect-video bg-tertiary dark:bg-dark-tertiary flex items-center justify-center relative">
-            <span className="text-4xl text-accent">K</span>
-          </div>
-          <div className="p-5">
-            <div className="flex flex-col mb-3">
-              <h3 className="font-medium text-lg dark:text-dark-primary mb-2">Karvaan – Vehicle Management App</h3>
-              <a 
-                href="https://github.com/abbasahsan1/Karvaan/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#24292e] hover:bg-[#1d2125] text-white px-4 py-2 rounded-md text-sm font-medium transition-all transform hover:-translate-y-0.5 hover:shadow-md self-start"
-              >
-                <FaGithub className="text-lg" />
-                View on GitHub
-              </a>
-            </div>
-            <p className="text-primary/70 dark:text-dark-primary/70 mb-3">
-              Karvaan is a comprehensive vehicle management app designed to help vehicle owners track and manage various aspects of their vehicles, including maintenance, fuel consumption, expenses, and more.
-            </p>
-            
-            <div className="flex flex-wrap gap-2">
-              <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                Flutter
-              </span>
-              <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                Dart
-              </span>
-              <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                Python
-              </span>
-              <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                TensorFlow
-              </span>
-              <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                MongoDB
-              </span>
-              <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                Maps API
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Remaining placeholder projects */}
-        {[2, 3, 4, 5, 6].map((item) => (
+        {/* Display projects based on current state */}
+        {displayedProjects.map((project, index) => (
           <div 
-            key={item}
+            key={index}
             className="bg-white dark:bg-dark-secondary rounded-lg shadow-sm overflow-hidden hover:-translate-y-1 transition-all hover:shadow-md"
           >
-            <div className="aspect-video bg-tertiary dark:bg-dark-tertiary flex items-center justify-center">
-              <span className="text-4xl text-accent">*</span>
+            <div className="aspect-video bg-tertiary dark:bg-dark-tertiary flex items-center justify-center relative">
+              <span className="text-4xl text-accent">{project.letter}</span>
             </div>
             <div className="p-5">
-              <h3 className="font-medium text-lg mb-2 dark:text-dark-primary">Project Title {item}</h3>
+              <div className="flex flex-col mb-3">
+                <h3 className="font-medium text-lg dark:text-dark-primary mb-2">{project.title}</h3>
+                {/* Show GitHub link only for projects with GitHub repos */}
+                {project.repoUrl && project.repoUrl !== "#" && (
+                  <a 
+                    href={project.repoUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#24292e] hover:bg-[#1d2125] text-white px-4 py-2 rounded-md text-sm font-medium transition-all transform hover:-translate-y-0.5 hover:shadow-md self-start"
+                  >
+                    <FaGithub className="text-lg" />
+                    View on GitHub
+                  </a>
+                )}
+              </div>
               <p className="text-primary/70 dark:text-dark-primary/70 mb-3">
-                Brief description of the project and the technologies used in its development.
+                {project.description}
               </p>
               <div className="flex flex-wrap gap-2">
-                <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                  React
-                </span>
-                <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                  Node.js
-                </span>
-                <span className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80">
-                  MongoDB
-                </span>
+                {project.tags.map((tag, tagIndex) => (
+                  <span 
+                    key={tagIndex} 
+                    className="text-xs bg-tertiary dark:bg-dark-tertiary px-2 py-1 rounded text-primary/80 dark:text-dark-primary/80"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
-        ))}
+        ))} 
       </div>
+
+      {/* View All Projects button - only show if there are more projects to display */}
+      {!showAllProjects && projectItems.length > initialProjectCount && (
+        <div className="mt-10 text-center">
+          <button 
+            onClick={toggleShowAllProjects}
+            className="group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
+          >
+            View All Projects
+            <FaChevronDown className="transition-transform group-hover:translate-y-1" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

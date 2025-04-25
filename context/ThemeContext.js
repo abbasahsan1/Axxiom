@@ -2,41 +2,62 @@
 
 import { createContext, useState, useEffect } from 'react';
 
-export const ThemeContext = createContext();
+// Create context with default values to prevent the "undefined" error
+export const ThemeContext = createContext({
+  darkMode: false,
+  toggleDarkMode: () => {},
+});
 
 export const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Initialize dark mode based on user preferences
+  // Only run on client side
   useEffect(() => {
-    // Check for system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setMounted(true);
     
-    // Check for stored preference
-    const storedTheme = localStorage.getItem('theme');
-    
-    if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-      setDarkMode(true);
-      document.documentElement.classList.add('dark');
+    try {
+      // Check if user has a theme preference stored
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        setDarkMode(true);
+        document.documentElement.classList.add('dark');
+      } else {
+        setDarkMode(false);
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (error) {
+      console.error('Error accessing localStorage:', error);
     }
   }, []);
 
-  // Toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode(prevMode => {
-      const newMode = !prevMode;
-      
-      if (newMode) {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
+      try {
+        const newMode = !prevMode;
+        
+        if (newMode) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        
+        return newMode;
+      } catch (error) {
+        console.error('Error toggling dark mode:', error);
+        return prevMode;
       }
-      
-      return newMode;
     });
   };
+
+  // Avoid hydration mismatch by not rendering anything different on the server
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>

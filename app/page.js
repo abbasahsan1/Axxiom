@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import ScrollAnimations from '../components/ScrollAnimations';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -10,11 +10,9 @@ import Projects from '../components/Projects';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
-import { ThemeContext } from '../context/ThemeContext';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
-  const { darkMode } = useContext(ThemeContext);
 
   const handleSetActive = (section) => {
     setActiveSection(section);
