@@ -94,7 +94,7 @@ const Discount = () => {
   }, [showAllUniversities]);
   // Universities data organized by region
   const universities = {
-  'Islamabad / ICT': [
+  'Islamabad': [
     'Allama Iqbal Open University (AIOU)', 'Bahria University (BU)', 'COMSATS University Islamabad (CUI)', 
     'Federal Urdu University of Arts, Science & Technology (FUUAST)', 'Foundation University Islamabad (FUI)', 
     'International Islamic University (IIUI)', 'National Defence University (NDU)', 
