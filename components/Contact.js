@@ -163,8 +163,7 @@ const Contact = () => {
                   placeholder="Enter your full name"
                 />
               </div>
-              
-              <div>
+                <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2 dark:text-dark-primary/90">
                   Email Address
                 </label>
@@ -175,6 +174,19 @@ const Contact = () => {
                   required
                   className="w-full px-4 py-3 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-background text-primary dark:text-dark-primary focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
                   placeholder="example@email.com"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-2 dark:text-dark-primary/90">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  className="w-full px-4 py-3 rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark-background text-primary dark:text-dark-primary focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
+                  placeholder="+92 XXX XXXXXXX"
                 />
               </div>
               
