@@ -1,12 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const Projects = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   // Start with a safe default for server rendering (showing 3 projects)
   const [initialProjectCount, setInitialProjectCount] = useState(3);
+  // Reference to the projects section container
+  const projectsSectionRef = useRef(null);
   
   // Projects data array
   const projectItems = [
@@ -79,17 +81,43 @@ const Projects = () => {
     return () => {
       window.removeEventListener('resize', updateProjectCount);
     };
-  }, []);
+  }, []);  // State to preserve scroll position
+  const [scrollPosition, setScrollPosition] = useState(null);
+  
+  // Effect to scroll after render if position is stored
+  useEffect(() => {
+    if (!showAllProjects && scrollPosition !== null) {
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: 'smooth'
+      });
+      setScrollPosition(null); // Reset after use
+    }
+  }, [showAllProjects, scrollPosition]);
 
+  // Toggle function with reliable position saving
   const toggleShowAllProjects = () => {
-    setShowAllProjects(!showAllProjects);
+    if (showAllProjects) {
+      // We're about to collapse - save current position
+      const projectsSection = document.getElementById('projects-section');
+      if (projectsSection) {
+        // Save position of projects section in the page
+        const sectionTop = projectsSection.getBoundingClientRect().top + window.scrollY;
+        setScrollPosition(sectionTop);
+      }
+      
+      // Update state to collapse
+      setShowAllProjects(false);
+    } else {
+      // Simply expand
+      setShowAllProjects(true);
+    }
   };
 
   // Projects to display based on current state
   const displayedProjects = showAllProjects ? projectItems : projectItems.slice(0, initialProjectCount);
-
   return (
-    <div className="container-custom">
+    <div id="projects-section" className="container-custom">
       <div className="text-center mb-12">
         <h2 className="heading-lg mb-4">Our Projects</h2>
         <p className="text-lg text-primary/70 dark:text-dark-primary/70 max-w-3xl mx-auto">
@@ -151,11 +179,10 @@ const Projects = () => {
         ))} 
       </div>
 
-      {/* View All Projects toggle button - always visible */}
-      <div className="mt-10 text-center">
+      {/* View All Projects toggle button - always visible */}      <div className="mt-10 text-center">
         <button 
           onClick={toggleShowAllProjects}
-          className="group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
+          className="projects-toggle-button group inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-medium py-3 px-6 rounded-md transition-all hover:-translate-y-1 hover:shadow-md"
           aria-label={showAllProjects ? "Show fewer projects" : "View all projects"}
         >
           {showAllProjects ? (

@@ -16,9 +16,27 @@ const Discount = () => {
         : [...prev, region]
     );
   };
-
   const toggleAllUniversities = () => {
+    const isMobile = window.innerWidth < 768;
+    const buttonElement = document.getElementById('university-dropdown-btn');
+    const currentPosition = buttonElement ? buttonElement.getBoundingClientRect().top : 0;
+    
+    // Save the current scroll position relative to the viewport
+    const scrollPosition = currentPosition + window.scrollY - 20; // 20px offset for better positioning
+    
+    // Toggle the dropdown state
     setShowAllUniversities(prev => !prev);
+    
+    // If on mobile and we're closing the dropdown, scroll back to button position
+    if (isMobile && showAllUniversities) {
+      // Delay the scroll to ensure DOM updates
+      setTimeout(() => {
+        window.scrollTo({
+          top: scrollPosition,
+          behavior: 'smooth'
+        });
+      }, 50);
+    }
   };
   
   // Handle search functionality
@@ -76,72 +94,78 @@ const Discount = () => {
   }, [showAllUniversities]);
   // Universities data organized by region
   const universities = {
-    'Islamabad / ICT': [
-      'Allama Iqbal Open University', 'Bahria University', 'COMSATS University Islamabad', 
-      'Federal Urdu University of Arts, Science & Technology', 'Foundation University Islamabad', 
-      'International Islamic University', 'National Defence University', 
-      'National University of Computer & Emerging Sciences (FAST-NUCES)', 
-      'National University of Modern Languages', 'National University of Sciences & Technology', 
-      'Pakistan Institute of Engineering & Applied Sciences', 'Quaid-i-Azam University', 
-      'Riphah International University', 'Sir Syed CASE Institute of Technology', 
-      'Virtual University of Pakistan', 'Air University', 
-      'Capital University of Science & Technology', 'Institute of Space Technology'
-    ],
-    'Punjab': [
-      'Beaconhouse National University', 'Beaconhouse School System (Higher Education Division)', 
-      'COMSATS University Wah Campus', 'Forman Christian College University', 
-      'Government College University, Faisalabad', 'Government College University, Lahore', 
-      'Institute of Management Sciences, Lahore', 'Institute of Glass & Ceramics Technology (IPGT & RI)', 
-      'Kinnaird College for Women University', 'King Edward Medical University', 'KEMU', 
-      'Lahore College for Women University', 'Lahore School of Economics', 
-      'Lahore University of Management Sciences', 'National College of Arts', 
-      'National College of Business Administration & Economics', 'Pakistan Institute of Fashion & Design', 
-      'Punjab College of Art & Design', 'Punjab Tianjin University of Technology', 
-      'University of Central Punjab', 'University of Education, Lahore', 
-      'University of Engineering & Technology, Lahore', 'University of Health Sciences, Lahore', 
-      'University of Lahore', 'University of Management & Technology, Lahore', 
-      'University of the Punjab', 'University of Veterinary & Animal Sciences'
-    ],
-    'Sindh': [
-      'Baqai Medical University', 'Dawood University of Engineering & Technology', 
-      'Dow University of Health Sciences', 'Hamdard University', 
-      'Indus Valley School of Art & Architecture', 'Institute of Business Administration, Karachi', 
-      'Isra University', 'Jinnah Sindh Medical University', 'KASB Institute of Technology', 
-      'NED University of Engineering & Technology', 'Sir Syed University of Engineering & Technology', 
-      'Sindh Madressatul Islam University', 'University of Karachi', 'University of Sindh'
-    ],
-    'Khyber Pakhtunkhwa': [
-      'Abasyn University', 'Abbottabad University of Science & Technology', 
-      'City University of Science & Information Technology, Peshawar', 'CECOS University', 
-      'Gandhara University', 'Ghulam Ishaq Khan Institute of Engineering Sciences & Technology', 
-      'Gomal University', 'Institute of Management Sciences, Peshawar', 'Islamia College University', 
-      'IQRA National University', 'Khyber Medical University', 'Kohat University of Science & Technology', 
-      'Sarhad University of Science & Information Technology', 'Shaheed Benazir Bhutto Women University', 
-      'University of Agriculture, Dera Ismail Khan', 'University of Agriculture, Peshawar', 
-      'University of Engineering & Technology, Peshawar', 'University of Peshawar', 
-      'Women University Swabi', 'Qurtuba University, Dera Ismail Khan'
-    ],
-    'Balochistan': [
-      'Al-Hamd Islamic University', 'Balochistan University of Engineering & Technology', 
-      'Balochistan University of Information Technology, Engineering & Management Sciences', 
-      'Bolan University of Medical & Health Sciences', 
-      'Lasbela University of Agriculture, Water & Marine Sciences', 
-      'Quetta Institute of Medical Sciences', 'Sardar Bahadur Khan Women\'s University', 
-      'University of Balochistan', 'University of Gwadar', 'University of Makran', 'University of Turbat'
-    ],
-    'Azad Jammu & Kashmir': [
-      'Al-Khair University', 'Mirpur University of Science & Technology', 
-      'University of Azad Jammu & Kashmir', 'University of Poonch, Rawalakot'
-    ],
-    'Gilgit-Baltistan': [
-      'Baltistan University', 'Karakoram International University'
-      
-    ],
-    'Turkey': [
-      'Altinbas International University' ,'Halice University'
-      
-    ]
-  };
+  'Islamabad / ICT': [
+    'Allama Iqbal Open University (AIOU)', 'Bahria University (BU)', 'COMSATS University Islamabad (CUI)', 
+    'Federal Urdu University of Arts, Science & Technology (FUUAST)', 'Foundation University Islamabad (FUI)', 
+    'International Islamic University (IIUI)', 'National Defence University (NDU)', 
+    'National University of Computer & Emerging Sciences (FAST-NUCES)', 
+    'National University of Modern Languages (NUML)', 'National University of Sciences & Technology (NUST)', 
+    'Pakistan Institute of Engineering & Applied Sciences (PIEAS)', 'Quaid-i-Azam University (QAU)', 
+    'Riphah International University (RIU)', 'Sir Syed CASE Institute of Technology (SS-CASE-IT)', 
+    'Virtual University of Pakistan (VU)', 'Air University (AU)', 
+    'Capital University of Science & Technology (CUST)', 'Institute of Space Technology (IST)'
+  ],
+  'Punjab': [
+    'Beaconhouse National University (BNU)', 'Beaconhouse School System (Higher Education Division)', 
+    'COMSATS University Wah Campus (CUI Wah)', 'Forman Christian College University (FCCU)', 
+    'Government College University, Faisalabad (GCUF)', 'Government College University, Lahore (GCU)', 
+    'Institute of Management Sciences, Lahore (IMS)', 'Institute of Glass & Ceramics Technology (IPGT & RI)', 
+    'Kinnaird College for Women University (KCWU)', 'King Edward Medical University (KEMU)', 'KEMU', 
+    'Lahore College for Women University (LCWU)', 'Lahore School of Economics (LSE)', 
+    'Lahore University of Management Sciences (LUMS)', 'National College of Arts (NCA)', 
+    'National College of Business Administration & Economics (NCBA&E)', 
+    'Pakistan Institute of Fashion & Design (PIFD)', 
+    'Punjab College of Art & Design (PCAD)', 'Punjab Tianjin University of Technology (PTUT)', 
+    'University of Central Punjab (UCP)', 'University of Education, Lahore (UE)', 
+    'University of Engineering & Technology, Lahore (UET Lahore)', 'University of Health Sciences, Lahore (UHS)', 
+    'University of Lahore (UOL)', 'University of Management & Technology, Lahore (UMT)', 
+    'University of the Punjab (PU)', 'University of Veterinary & Animal Sciences (UVAS)'
+  ],
+  'Sindh': [
+    'Baqai Medical University (BMU)', 'Dawood University of Engineering & Technology (DUET)', 
+    'Dow University of Health Sciences (DUHS)', 'Hamdard University (HU)', 
+    'Indus Valley School of Art & Architecture (IVS)', 'Institute of Business Administration, Karachi (IBA)', 
+    'Isra University (IU)', 'Jinnah Sindh Medical University (JSMU)', 'KASB Institute of Technology (KASBIT)', 
+    'NED University of Engineering & Technology (NEDUET)', 
+    'Sir Syed University of Engineering & Technology (SSUET)', 
+    'Sindh Madressatul Islam University (SMIU)', 'University of Karachi (UoK)', 
+    'University of Sindh (UoS)'
+  ],
+  'Khyber Pakhtunkhwa': [
+    'Abasyn University (AU)', 'Abbottabad University of Science & Technology (AUST)', 
+    'City University of Science & Information Technology, Peshawar (CUSIT)', 'CECOS University (CECOS)', 
+    'Gandhara University (GU)', 'Ghulam Ishaq Khan Institute of Engineering Sciences & Technology (GIKI)', 
+    'Gomal University (GU)', 'Institute of Management Sciences, Peshawar (IMSciences)', 'Islamia College University (ICU)', 
+    'IQRA National University (INU)', 'Khyber Medical University (KMU)', 
+    'Kohat University of Science & Technology (KUST)', 
+    'Sarhad University of Science & Information Technology (SUIT)', 
+    'Shaheed Benazir Bhutto Women University (SBBWU)', 
+    'University of Agriculture, Dera Ismail Khan (UAD)', 'University of Agriculture, Peshawar (UAP)', 
+    'University of Engineering & Technology, Peshawar (UET Peshawar)', 'University of Peshawar (UoP)', 
+    'Women University Swabi (WUS)', 'Qurtuba University, Dera Ismail Khan (QUDIK)'
+  ],
+  'Balochistan': [
+    'Al-Hamd Islamic University (AIU)', 'Balochistan University of Engineering & Technology (BUET)', 
+    'Balochistan University of Information Technology, Engineering & Management Sciences (BUITEMS)', 
+    'Bolan University of Medical & Health Sciences (BUMHS)', 
+    'Lasbela University of Agriculture, Water & Marine Sciences (LUAWMS)', 
+    'Quetta Institute of Medical Sciences (QIMS)', 
+    'Sardar Bahadur Khan Women\'s University (SBKWU)', 
+    'University of Balochistan (UOB)', 'University of Gwadar (UoG)', 'University of Makran (UoM)', 
+    'University of Turbat (UOT)'
+  ],
+  'Azad Jammu & Kashmir': [
+    'Al-Khair University (AKU)', 'Mirpur University of Science & Technology (MUST)', 
+    'University of Azad Jammu & Kashmir (UAJK)', 'University of Poonch, Rawalakot (UPR)'
+  ],
+  'Gilgit-Baltistan': [
+    'Baltistan University (BU)', 'Karakoram International University (KIU)'
+  ],
+  'Turkey': [
+    'Altinbas International University (AIU)', 'Halice University (HU)'
+  ]
+};
+
 
   return (
     <div className="container-custom py-12">
