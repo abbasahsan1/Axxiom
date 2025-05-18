@@ -21,16 +21,15 @@ const Hero = () => {
   return (
     <div className="container-custom">
       <div className="flex flex-col md:flex-row items-center justify-between gap-12 py-32">
-        <div className="md:w-1/2">
-          <h1 className="heading-xl mb-6 animate-fade-in">
+        <div className="md:w-1/2">          <h1 className="heading-xl mb-6 animate-fade-in">
             Your Expert<br/> 
             <span className="text-accent">Development Partner</span><br/>
-            for University Projects
+            for Software Projects
           </h1>
           
           <p className="text-lg text-primary/70 dark:text-dark-primary/70 mb-8 animate-slide-up" style={{animationDelay: '0.3s'}}>
-            Specialized in helping students excel with professional software development services 
-            for assignments, semester projects, and final year projects (FYPs).
+            Specialized in delivering high-quality software solutions for businesses and organizations 
+            of all sizes, from students to startups to enterprise-level applications.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{animationDelay: '0.6s'}}>
@@ -52,8 +51,7 @@ const Hero = () => {
             <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-full opacity-20"></div>
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent rounded-full opacity-10"></div>
             <div className="bg-tertiary dark:bg-dark-tertiary p-8 rounded-lg shadow-lg">
-              {/* Code Editor Graphic - Now more rectangular */}
-              <div className="bg-[#1E1E1E] dark:bg-[#121212] rounded-lg overflow-hidden border border-gray-700 w-full">
+              {/* Code Editor Graphic - Now more rectangular */}                <div className="bg-[#1E1E1E] dark:bg-[#121212] rounded-lg overflow-hidden border border-gray-700 w-full">
                 {/* Editor Top Bar */}
                 <div className="bg-[#252526] dark:bg-[#1E1E1E] p-2 flex items-center">
                   <div className="flex space-x-2">
@@ -61,11 +59,10 @@ const Hero = () => {
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   </div>
-                  <div className="text-xs text-gray-400 mx-auto">university-project.js</div>
+                  <div className="text-xs text-gray-400 mx-auto">business-solution.js</div>
                 </div>
                 
-                {/* Code Content - Added more lines to make it more rectangular */}
-                <div className="p-4 font-mono text-sm">
+                {/* Code Content - Added more lines to make it more rectangular */}                <div className="p-4 font-mono text-sm">
                   <div className="flex">
                     <span className="text-gray-500 mr-4">1</span>
                     <span className="text-blue-400">import</span>
@@ -90,12 +87,12 @@ const Hero = () => {
                   </div>
                   <div className="flex">
                     <span className="text-gray-500 mr-4">4</span>
-                    <span className="text-gray-400">// Student Project Component</span>
+                    <span className="text-gray-400">// Business Solution Component</span>
                   </div>
                   <div className="flex">
                     <span className="text-gray-500 mr-4">5</span>
                     <span className="text-blue-400">const</span>
-                    <span className="text-yellow-300 ml-1">StudentProject</span>
+                    <span className="text-yellow-300 ml-1">BusinessSolution</span>
                     <span className="text-white ml-1">=</span>
                     <span className="text-purple-400 ml-1">() ={">"}</span>
                     <span className="text-white ml-1">&#123;</span>
@@ -144,7 +141,7 @@ const Hero = () => {
                     <span className="text-white ml-12">&lt;</span>
                     <span className="text-orange-400">p</span>
                     <span className="text-white">&gt;</span>
-                    <span className="text-gray-300">University Project Status:</span>
+                    <span className="text-gray-300"> Project Status:</span>
                     <span className="text-white">&lt;/</span>
                     <span className="text-orange-400">p</span>
                     <span className="text-white">&gt;</span>

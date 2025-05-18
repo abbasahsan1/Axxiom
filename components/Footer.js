@@ -15,10 +15,9 @@ const Footer = () => {
               <span className="text-accent font-bold text-3xl mr-2">*</span>
               <span className="font-serif font-bold text-2xl">Axiom</span>
             </div>
-            
-            <p className="text-white/70 mb-4">
-              Your trusted development partner for university projects, assignments, 
-              semester projects, and final year projects (FYPs).
+              <p className="text-white/70 mb-4">
+              Your trusted development partner for professional software solutions, 
+              business applications, and enterprise-level projects.
             </p>
           </div>
           

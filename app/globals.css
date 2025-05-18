@@ -5,7 +5,7 @@
 :root {
   --foreground-rgb: 31, 31, 31;
   --background-rgb: 253, 252, 251;
-  --accent-rgb: 230, 138, 94;
+  --accent-rgb: 59, 130, 246; /* Changed to vibrant blue */
   --tertiary-rgb: 245, 242, 239;
   --secondary-rgb: 209, 209, 209;
 }
@@ -13,7 +13,7 @@
 .dark {
   --foreground-rgb: 241, 241, 241;
   --background-rgb: 18, 18, 18;
-  --accent-rgb: 230, 138, 94;
+  --accent-rgb: 96, 165, 250; /* Brighter blue for dark mode */
   --tertiary-rgb: 30, 30, 30;
   --secondary-rgb: 46, 46, 46;
 }

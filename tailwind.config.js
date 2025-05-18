@@ -7,17 +7,16 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {
-      colors: {
+    extend: {      colors: {
         primary: '#1f1f1f',
         secondary: '#D1D1D1',
-        accent: '#E68A5E',
+        accent: '#3B82F6', /* Changed to a vibrant blue */
         background: '#FDFCFB',
         tertiary: '#F5F2EF',
         dark: {
           primary: '#f1f1f1',
           secondary: '#2E2E2E',
-          accent: '#E68A5E',
+          accent: '#60A5FA', /* A brighter blue for dark mode */
           background: '#121212',
           tertiary: '#1E1E1E'
         }
