@@ -96,10 +96,9 @@ const Contact = () => {
               <div className="bg-accent/10 p-3.5 rounded-full flex-shrink-0">
                 <FaWhatsapp className="text-accent text-xl" />
               </div>
-              <div className="flex-grow">
-                <h4 className="font-medium text-lg mb-3">WhatsApp</h4>
+              <div className="flex-grow">                <h4 className="font-medium text-lg mb-3">WhatsApp</h4>
                 <a 
-                  href="https://wa.me/923350014063" 
+                  href="https://wa.me/923288521430" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-primary/80 dark:text-dark-primary/80 hover:text-accent transition-colors text-lg"
@@ -109,7 +108,7 @@ const Contact = () => {
                 {/* WhatsApp Button - Centered on mobile, regular alignment on desktop */}
                 <div className="flex justify-center md:block">
                   <a 
-                    href="https://wa.me/923350014063" 
+                    href="https://wa.me/923288521430" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-medium py-2.5 px-4 rounded-md transition-all hover:-translate-y-0.5 hover:shadow-md"

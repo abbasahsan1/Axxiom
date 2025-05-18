@@ -71,16 +71,15 @@ const Footer = () => {
                 >
                   axixomsoftware+info@gmail.com
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
+              </li>              <li className="flex items-center gap-3">
                 <FaWhatsapp className="text-accent" />
                 <a 
-                  href="https://wa.me/923350014063" 
+                  href="https://wa.me/923288521430" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-white/70 hover:text-accent transition-colors"
                 >
-                  +92 335 0014063
+                  +92 328 8521430
                 </a>
               </li>
             </ul>
