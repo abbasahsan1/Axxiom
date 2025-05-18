@@ -43,7 +43,7 @@ const Header = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center hover-lift transition-transform">
             <span className="text-accent font-bold text-3xl mr-2">*</span>
-            <span className="font-serif font-bold text-2xl dark:text-dark-primary">Axiom</span>
+            <span className="font-serif font-bold text-2xl dark:text-dark-primary">Axxiom</span>
           </Link>
         </div>
 

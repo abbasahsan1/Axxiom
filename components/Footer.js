@@ -13,7 +13,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4 hover-lift">
               <span className="text-accent font-bold text-3xl mr-2">*</span>
-              <span className="font-serif font-bold text-2xl">Axiom</span>
+              <span className="font-serif font-bold text-2xl">Axxiom</span>
             </div>
               <p className="text-white/70 mb-4">
               Your trusted development partner for professional software solutions, 
@@ -86,7 +86,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-white/10 text-center text-white/50 text-sm">
-          <p>&copy; {currentYear} Axiom Software. All rights reserved.</p>
+          <p>&copy; {currentYear} Axxiom Software. All rights reserved.</p>
           <p className="mt-2">
             <Link 
               href="#" 

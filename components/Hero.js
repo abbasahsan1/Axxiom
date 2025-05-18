@@ -130,8 +130,7 @@ const Hero = () => {
                     <span className="text-gray-500 mr-4">10</span>
                     <span className="text-white ml-12">&lt;</span>
                     <span className="text-orange-400">h1</span>
-                    <span className="text-white">&gt;</span>
-                    <span className="text-gray-300">Axiom Solutions</span>
+                    <span className="text-white">&gt;</span>                    <span className="text-gray-300">Axxiom Solutions</span>
                     <span className="text-white">&lt;/</span>
                     <span className="text-orange-400">h1</span>
                     <span className="text-white">&gt;</span>
